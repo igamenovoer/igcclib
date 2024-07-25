@@ -7,6 +7,6 @@ find_package(Eigen3 REQUIRED)
 
 # core library
 add_library(igcclib-core INTERFACE)
-target_include_directories(igcclib-core INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_include_directories(igcclib-core INTERFACE ${CMAKE_CURRENT_LIST_DIR}/include)
 
 add_subdirectory(test)

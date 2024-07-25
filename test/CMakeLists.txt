@@ -1,6 +1,8 @@
 cmake_minimum_required(VERSION 3.20)
 project(igcclib-test)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 # find spdlog
 find_package(spdlog REQUIRED)
 find_package(Eigen3 REQUIRED)

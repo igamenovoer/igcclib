@@ -1,7 +1,7 @@
 //Eigen-related definitions
 #pragma once
 #include <Eigen/Eigen>
-#include "def_master.h"
+#include <igcclib/igcclib_master.hpp>
 
 namespace _NS_UTILITY
 {
