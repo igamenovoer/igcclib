@@ -1,8 +1,27 @@
-#include "util_cgal.h"
+#include <CGAL/Barycentric_coordinates_2/triangle_coordinates_2.h>
+#include <igcclib/geometry/igcclib_cgal.hpp>
 #include <CGAL/Polygon_mesh_processing/compute_normal.h>
 #include <boost/property_map/function_property_map.hpp>
 #include <CGAL/lloyd_optimize_mesh_2.h>
+#include <CGAL/Barycentric_coordinates_2/Mean_value_coordinates_2.h>
+#include <CGAL/Barycentric_coordinates_2/Generalized_barycentric_coordinates_2.h>
+#include <CGAL/Projection_traits_xy_3.h>
 //#include <CGAL/Barycentric_coordinates_2/Mean_value_coordinates_2.h>
+
+namespace CGALExample{
+	// see https://doc.cgal.org/latest/Barycentric_coordinates_2/Barycentric_coordinates_2_2terrain_height_modeling_8cpp-example.html#_a3
+	using Kernel = _NS_UTILITY::KERNEL;
+	using FT      = Kernel::FT;
+
+	using Projection = CGAL::Projection_traits_xy_3<Kernel>;
+	using Point       = typename Projection::Point_2;
+	using Point_range = std::vector<Point>;
+	using Mean_value_coordinates_2 = CGAL::Barycentric_coordinates::Mean_value_coordinates_2<Point_range, Projection>;
+
+	using Point_2 = Kernel::Point_2;
+	using Policy  = CGAL::Barycentric_coordinates::Computation_policy_2;
+};
+
 
 namespace _NS_UTILITY {
 
@@ -201,10 +220,6 @@ namespace _NS_UTILITY {
 
 	void compute_mean_value_coordinate_2(const POINTLIST_2& polygon_pts, const POINTLIST_2& query_pts, std::vector<std::vector<float_type>>& output)
 	{
-		//construct mean value coordinate object
-		using MEAN_VALUE = CGAL::Barycentric_coordinates::Mean_value_2<KERNEL>;
-		using MEAN_VALUE_COORD = CGAL::Barycentric_coordinates::Generalized_barycentric_coordinates_2<MEAN_VALUE, KERNEL>;
-		MEAN_VALUE_COORD mvc_computer(polygon_pts.begin(), polygon_pts.end());
 		output.resize(query_pts.size());
 		for (auto& x : output)
 		{
@@ -212,32 +227,32 @@ namespace _NS_UTILITY {
 			x.reserve(polygon_pts.size());
 		}
 
+		auto policy = CGALExample::Policy::PRECISE;
 		for (int i = 0; i < query_pts.size(); i++)
 		{
-			//CGAL::Barycentric_coordinates::mean_value_coordinates_2(
-			//	polygon_pts, query_pts[i], std::back_inserter(output[i]));
-			mvc_computer(query_pts[i], std::back_inserter(output[i]));
+			CGAL::Barycentric_coordinates::mean_value_coordinates_2(polygon_pts, query_pts[i], std::back_inserter(output[i]), policy);
 		}
 	}
 
 	_NS_UTILITY::POINT_3 compute_barycentric_coordinate(const TRI_3& tri, POINT_3 pt)
 	{
-		typedef CGAL::Barycentric_coordinates::Triangle_coordinates_2<KERNEL> BC_COMPUTE;
+		// typedef CGAL::Barycentric_coordinates::Triangle_coordinates_2<KERNEL> BC_COMPUTE;
 		std::array<double, 3> buf;
 
 		auto plane = tri.supporting_plane();
 		auto v1 = plane.to_2d(tri.vertex(0));
 		auto v2 = plane.to_2d(tri.vertex(1));
 		auto v3 = plane.to_2d(tri.vertex(2));
-		BC_COMPUTE bc_coord(v1, v2, v3);
-		auto q = plane.to_2d(pt);
-		bc_coord(q, buf.begin());
+		CGAL::Barycentric_coordinates::triangle_coordinates_2(v1, v2, v3, plane.to_2d(pt), buf.begin());
+		// BC_COMPUTE bc_coord(v1, v2, v3);
+		// auto q = plane.to_2d(pt);
+		// bc_coord(q, buf.begin());
 		return POINT_3(buf[0], buf[1], buf[2]);
 	}
 
 	void compute_barycentric_coordinate(const TRI_3& tri, const POINTLIST_3& pts, POINTLIST_3& output)
 	{
-		typedef CGAL::Barycentric_coordinates::Triangle_coordinates_2<KERNEL> BC_COMPUTE;
+		// typedef CGAL::Barycentric_coordinates::Triangle_coordinates_2<KERNEL> BC_COMPUTE;
 		std::array<double, 3> buf;
 		output.resize(pts.size());
 
@@ -245,13 +260,15 @@ namespace _NS_UTILITY {
 		auto v1 = plane.to_2d(tri.vertex(0));
 		auto v2 = plane.to_2d(tri.vertex(1));
 		auto v3 = plane.to_2d(tri.vertex(2));
-		BC_COMPUTE bc_coord(v1, v2, v3);
+		// BC_COMPUTE bc_coord(v1, v2, v3);
+		// CGAL::Barycentric_coordinates::triangle_coordinates_2(v1, v2, v3, plane.to_2d(pts), buf.begin());
 
 		for (size_t i = 0; i < pts.size(); i++)
 		{
 			auto p = pts[i];
 			auto q = plane.to_2d(p);
-			bc_coord(q, buf.begin());
+			CGAL::Barycentric_coordinates::triangle_coordinates_2(v1, v2, v3, q, buf.begin());
+			// bc_coord(q, buf.begin());
 			output[i] = POINT_3(buf[0], buf[1], buf[2]);
 		}
 	}

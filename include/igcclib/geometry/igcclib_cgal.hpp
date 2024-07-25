@@ -1,177 +1,157 @@
 #pragma once
 
-#include <vector>
+#include "igcclib_cgal_def.hpp"
+#include <algorithm>
+#include <queue>
+#include <unordered_map>
 
-#include "igcclib_master.h"
-#include <CGAL/Exact_predicates_inexact_constructions_kernel.h>
-#include <CGAL/Cartesian.h>
+#include <CGAL/Polyhedron_incremental_builder_3.h>
+#include <CGAL/Polygon_mesh_processing/triangulate_faces.h>
+#include <CGAL/Barycentric_coordinates_2/triangle_coordinates_2.h> 
 
-//AABB tree
-#include <CGAL/AABB_tree.h>
-#include <CGAL/AABB_traits.h>
-#include <CGAL/AABB_triangle_primitive.h>
-#include <CGAL/AABB_segment_primitive.h>
-
-//triangle mesh
-#include <CGAL/Surface_mesh.h>
-
-//triangulation
-#include <CGAL/Triangulation_face_base_with_info_2.h>
-#include <CGAL/Triangulation_vertex_base_with_info_2.h>
-#include <CGAL/Constrained_Delaunay_triangulation_2.h>
-#include <CGAL/Delaunay_mesher_2.h>
-#include <CGAL/Delaunay_mesh_size_criteria_2.h>
-#include <CGAL/Delaunay_mesh_face_base_2.h>
-#include <CGAL/Delaunay_mesh_vertex_base_2.h>
-
-//polyhedron
-#include <CGAL/Polyhedron_3.h>
-#include <CGAL/Polygon_2.h>
-
-//kernel operations
-#include <CGAL/intersections.h>
-/*
-//kdtree
-#include <CGAL/Search_traits_3.h>
-#include <CGAL/Search_traits_2.h>
-#include <CGAL/Search_traits_adapter.h>
-#include <CGAL/Orthogonal_k_neighbor_search.h>
-#include <CGAL/Orthogonal_incremental_neighbor_search.h>
-*/
-
+// for mean value coordinate
+// #include <CGAL/Barycentric_coordinates_2/Mean_value_2.h>
 
 namespace _NS_UTILITY
 {
-	constexpr double CVAL_PI = 3.1415926535897932384626433832795;
-	class _Epick
-		: public CGAL::Filtered_kernel_adaptor<
-		CGAL::Type_equality_wrapper< 
-		CGAL::Simple_cartesian<float_type>::Base<_Epick>::Type, _Epick >,true >
-	{};
-	using KERNEL = _Epick; //this is the Exact_predicates_inexact_constructions_kernel for float_type
-	//typedef CGAL::Exact_predicates_inexact_constructions_kernel KERNEL;
-	typedef KERNEL::Point_3 POINT_3;
-	typedef KERNEL::Point_2 POINT_2;
-	typedef KERNEL::Triangle_3 TRI_3;
-	typedef KERNEL::Plane_3 PLANE;
-	typedef KERNEL::Ray_3 RAY_3;
-	typedef KERNEL::Vector_3 VEC_3;
-	typedef KERNEL::Segment_3 SEGMENT_3;
-	typedef KERNEL::Line_3 LINE_3;
-	
-	using POLYGON_2 = CGAL::Polygon_2 <KERNEL>;	
+	/// <summary>
+	/// compute mean value coordinates in 2d
+	/// </summary>
+	/// <param name="polygon_pts">the polygon point sequence, the first and last point DO NOT have to be the same,
+	/// as the polygon will be automatically closed</param>
+	/// <param name="query_pts">points against which mean value coordinates are computed</param>
+	/// <param name="output">output mean value coordinates for each point</param>
+	IGCCLIB_API void compute_mean_value_coordinate_2(
+		const POINTLIST_2& polygon_pts, const POINTLIST_2& query_pts,
+		std::vector<std::vector<float_type>>& output);
 
-	typedef std::vector<POINT_3> POINTLIST_3;
-	typedef std::vector<POINT_2> POINTLIST_2;
+	//compute barycentric coordinate given a 3d point and a 3d triangle
+	IGCCLIB_API void compute_barycentric_coordinate(const TRI_3& tri,
+		const POINTLIST_3& pts, POINTLIST_3& output);
 
-	typedef std::vector<SEGMENT_3> SEGLIST_3;
-	typedef std::vector<POINTLIST_3> POLYLINES_3;
-	typedef std::vector<TRI_3> TRILIST_3;
+	//compute barycentric coordinate given a 3d point and a 3d triangle
+	IGCCLIB_API POINT_3 compute_barycentric_coordinate(const TRI_3& tri, POINT_3 pt);
 
-	//for polygonal faces
-	typedef std::vector<CGAL::SM_Vertex_index> POLYFACE; //indices of vertices that make up a polygon face
-	typedef std::vector<POLYFACE> POLYFACELIST;
+	//re label all vertices
+	IGCCLIB_API void re_label_all_vertices(Triangulate_2::CONSTRAINED_DELAUNAY_2& cdt);
 
-	//mesh
-	typedef CGAL::Surface_mesh<POINT_2> TRIMESH_2;
-	typedef CGAL::Surface_mesh<POINT_3> TRIMESH_3;
+	template<typename _POINT>
+	void make_trimesh(const std::vector<_POINT>& pts,
+		const POLYFACELIST& faces, CGAL::Surface_mesh<_POINT>* outmesh)
+	{
+		typedef CGAL::Surface_mesh<_POINT> _TMESH;
+		typedef typename _TMESH::vertex_index VI;
+		typedef typename _TMESH::face_index FI;
 
-	//AABB tree definitions
-	//triangle tree
-	template<typename CGAL_KERNEL, typename STD_CONTAINER_TYPE>
-	class AABB_Triangle
+		//create mesh
+		_TMESH trimesh;
+		if (outmesh)
+			outmesh->clear();
+		else
+			outmesh = &trimesh;
+
+		//outmesh->reserve(pts.size(), faces.size() * 3, 0);
+		for (size_t i = 0; i < pts.size(); i++)
+			outmesh->add_vertex(pts[i]);
+
+		for (size_t i = 0; i < faces.size(); i++)
+		{
+			outmesh->add_face(faces[i]);
+		}
+	}
+
+	//update the in_domain mark for each triangle
+	IGCCLIB_API void mark_triangles_out_of_domain(Triangulate_2::CONSTRAINED_DELAUNAY_2* inout);
+
+	IGCCLIB_API void mark_domain(
+		Triangulate_2::CONSTRAINED_DELAUNAY_2& inout,
+		Triangulate_2::CONSTRAINED_DELAUNAY_2::Face_handle seedface,
+		bool is_seed_in_domain,
+		bool reset_visited_flag);
+
+	IGCCLIB_API void mark_domain_alternating(
+		Triangulate_2::CONSTRAINED_DELAUNAY_2& inout);
+
+	IGCCLIB_API void triangulate_polygon_2(const std::vector<POINTLIST_2>& ptslist, Triangulate_2::CONSTRAINED_DELAUNAY_2* out);
+
+	//pts is the polygon, with or without end point duplication
+	IGCCLIB_API void triangulate_polygon_2(const POINTLIST_2& pts, Triangulate_2::CONSTRAINED_DELAUNAY_2* out);
+
+	//optimize triangulation
+	IGCCLIB_API void optimize_triangulation(Triangulate_2::CONSTRAINED_DELAUNAY_2& cdt, double precision = 1e-6, int max_iter = 0);
+
+	//refine triangulation.
+	//optimize = true iff the mesh is to be optimized so that angles of the triangles are near 60 degrees
+	IGCCLIB_API void refine_triangulation(
+		Triangulate_2::CONSTRAINED_DELAUNAY_2& cdt, 
+		double max_segment_length);
+
+	template<typename P_TYPE>
+	void read_vertex_face(const CGAL::Surface_mesh<P_TYPE>& trimesh, std::vector<P_TYPE>* vertices, POLYFACELIST* faces)
+	{
+		typedef CGAL::Surface_mesh<P_TYPE> TRIMESH;
+		typedef typename TRIMESH::vertex_index VI;
+		typedef typename TRIMESH::face_index FI;
+
+		//read vertices
+		if (vertices)
+		{
+			vertices->clear();
+			BOOST_FOREACH(VI v, trimesh.vertices())
+				vertices->push_back(trimesh.point(v));
+		}
+
+		//read faces
+		if (faces)
+		{
+			faces->clear();
+			BOOST_FOREACH(FI f, trimesh.faces())
+			{
+				faces->emplace_back();
+				auto h = trimesh.halfedge(f);
+				BOOST_FOREACH(VI v, trimesh.vertices_around_face(h))
+					faces->back().push_back(v);
+			}
+		}
+	}
+
+	template<typename HDS>
+	class PolyhedronFromVertexFace : public CGAL::Modifier_base<HDS>
 	{
 	public:
-		typedef typename STD_CONTAINER_TYPE::iterator iterator;
-		typedef CGAL::AABB_triangle_primitive<CGAL_KERNEL, iterator> primitive;
-		typedef CGAL::AABB_traits<CGAL_KERNEL, primitive> traits;
-		typedef CGAL::AABB_tree<traits> tree;
-	};
-	typedef AABB_Triangle<KERNEL, TRILIST_3>::tree FACETREE_3;
-
-	//segment tree
-	template<typename CGAL_KERNEL, typename STD_CONTAINER_TYPE>
-	class AABB_Segment
-	{
-	public:
-		typedef typename STD_CONTAINER_TYPE::iterator iterator;
-		typedef CGAL::AABB_segment_primitive<CGAL_KERNEL, iterator> primitive;
-		typedef CGAL::AABB_traits<CGAL_KERNEL, primitive> traits;
-		typedef CGAL::AABB_tree<traits> tree;
-	};
-	typedef AABB_Segment<KERNEL, SEGLIST_3>::tree SEGTREE_3;
-	typedef CGAL::Polyhedron_3<KERNEL> POLYHEDRON_3;
-	/*
-	//3d kdtree with index
-	typedef boost::tuple<POINT_3, int> _KDPoint3;
-	typedef CGAL::Search_traits_adapter<_KDPoint3,
-		CGAL::Nth_of_tuple_property_map<0, _KDPoint3>,
-		CGAL::Search_traits_3<KERNEL> > _KDTraits3;
-	typedef CGAL::Orthogonal_incremental_neighbor_search<_KDTraits3> KDSearchInc3;
-	typedef KDSearchInc3::Tree KDTREE_3;
-
-	//2d kdtree with index
-	typedef boost::tuple<POINT_2, int> _KDPoint2;
-	typedef CGAL::Search_traits_adapter<_KDPoint2,
-		CGAL::Nth_of_tuple_property_map<0, _KDPoint2>,
-		CGAL::Search_traits_2<KERNEL> > _KDTraits2;
-	typedef CGAL::Orthogonal_incremental_neighbor_search<_KDTraits2> KDSearchInc2;
-	typedef KDSearchInc2::Tree KDTREE_2;
-	*/
-
-	//triangulations
-	namespace Triangulate_2
-	{
-		struct FaceInfo
+		typedef typename HDS::Traits::Point_3 POINT;
+		std::vector<POINT> m_vertices;
+		POLYFACELIST m_faces;
+		bool m_verbose;
+		PolyhedronFromVertexFace(const std::vector<POINT>& pts, const POLYFACELIST& faces, bool verbose = false)
 		{
-			//face in which hole?
-			int nesting_level = -1;
+			m_vertices = pts;
+			m_faces = faces;
+			m_verbose = verbose;
+		}
 
-			//face is visited in traversal?
-			bool visited = false;
-
-			//whatever you want to attach
-			void* data = 0;
-		};
-
-		struct VertexInfo
+		void operator()(HDS& hds)
 		{
-			//index of the vertex
-			int index = -1;
+			CGAL::Polyhedron_incremental_builder_3<HDS> builder(hds);
 
-			//custom data
-			void* data = 0;
-		};
+			builder.begin_surface(m_vertices.size(), m_faces.size());
 
-		typedef CGAL::Triangulation_vertex_base_with_info_2<VertexInfo, KERNEL> Vb;
-		typedef CGAL::Delaunay_mesh_vertex_base_2<KERNEL, Vb> VERTEX_BASE;
+			//add vertices
+			for (auto& p : m_vertices)
+				builder.add_vertex(p);
 
-		typedef CGAL::Triangulation_face_base_with_info_2<FaceInfo, KERNEL> Fb;
-		typedef CGAL::Constrained_triangulation_face_base_2<KERNEL, Fb> Fbb;
-		typedef CGAL::Constrained_Delaunay_triangulation_face_base_2<KERNEL,Fbb> Fbbb;
-		typedef CGAL::Delaunay_mesh_face_base_2<KERNEL, Fbbb> FACE_BASE;
+			//add faces
+			for (auto& f : m_faces)
+				builder.add_facet(f.begin(), f.end());
 
-		typedef CGAL::Triangulation_data_structure_2<VERTEX_BASE, FACE_BASE> TDS;
-		typedef CGAL::Constrained_Delaunay_triangulation_2<KERNEL, TDS> CONSTRAINED_DELAUNAY_2;
-		typedef CGAL::Delaunay_mesh_size_criteria_2<CONSTRAINED_DELAUNAY_2> CRITERIA_CDT_2;
-	}
-};
+			builder.end_surface();
+		}
+	};
 
-//cereal support for some object
-namespace cereal {
-	// ============== for plane =================
-	template<typename Archive_t>
-	void save(Archive_t& ar, const _NS_UTILITY::PLANE& p) {
-		ar(p.a(), p.b(), p.c());
-		ar(p.d());
-	}
+	IGCCLIB_API void make_polyhedron(const POINTLIST_3& pts, const POLYFACELIST& faces, POLYHEDRON_3& outpoly, bool verbose = false);
 
-	template<typename Archive_t>
-	void load(Archive_t& ar, _NS_UTILITY::PLANE& p) {
-		using FT = decltype(p.a());
-		FT a, b, c, d;
-		ar(a, b, c);
-		ar(d);
-		p = _NS_UTILITY::PLANE(a, b, c, d);
-	}
+	IGCCLIB_API void to_surface_mesh(const POLYHEDRON_3& poly, TRIMESH_3& trimesh, bool triangulate = false);
+
+	IGCCLIB_API void compute_vertex_normals(const TRIMESH_3& trimesh, std::vector<VEC_3>& output);
+	IGCCLIB_API void compute_face_normals(const TRIMESH_3& trimesh, std::vector<VEC_3>& output);
 }
