@@ -1,13 +1,14 @@
 #pragma once
-
-#include "def_master.h"
-#include "spdlog/spdlog.h"
-#include "spdlog/sinks/null_sink.h"
-#include "spdlog/sinks/ostream_sink.h"
-#include "spdlog/sinks/base_sink.h"
-#include "spdlog/sinks/basic_file_sink.h"
-#include "spdlog/sinks/stdout_color_sinks.h"
 #include <map>
+
+#include <igcclib/igcclib_master.hpp>
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/null_sink.h>
+#include <spdlog/sinks/ostream_sink.h>
+#include <spdlog/sinks/base_sink.h>
+#include <spdlog/sinks/basic_file_sink.h>
+#include <spdlog/sinks/stdout_color_sinks.h>
+
 
 namespace _NS_UTILITY
 {

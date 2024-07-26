@@ -1,6 +1,6 @@
 #pragma once
 
-#include "def_magnum.h"
+#include "igcclib_magnum_def.hpp"
 #include "./../../mesh/TriangularMesh.h"
 #include <Magnum/ImageView.h>
 #include <Magnum/Array.h>

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "igcclib_magnum_def.hpp"
-#include "CameraBase.h"
+#include "CameraBase.hpp"
 
 namespace _NS_UTILITY {
 	namespace MagnumProc {
