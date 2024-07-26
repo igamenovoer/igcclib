@@ -1,0 +1,50 @@
+namespace fbsdata;
+
+table Matrix_d
+{
+  content:[double];
+  shape:[int];
+}
+
+table Matrix_f
+{
+  content:[float];
+  shape:[int];
+}
+
+table Matrix_i32
+{
+  content:[int];
+  shape:[int];
+}
+
+table Matrix_i64
+{
+  content:[long];
+  shape:[int];
+}
+
+table Matrix_u8
+{
+  content:[ubyte];
+  shape:[int];
+}
+
+struct Vector_3d
+{
+  x:double;
+  y:double;
+  z:double;
+}
+
+struct Vector_2d
+{
+  x:double;
+  y:double;
+}
+
+struct Vector_2i32
+{
+  x:int;
+  y:int;
+}

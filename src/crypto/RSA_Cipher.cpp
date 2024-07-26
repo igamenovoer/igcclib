@@ -1,10 +1,10 @@
-#include "RSA_Cipher.h"
 #include "openssl/rsa.h"
 #include "openssl/bio.h"
 #include "openssl/bn.h"
 #include "openssl/pem.h"
 #include "openssl/err.h"
-#include "util_openssl.h"
+#include <igcclib/crypto/RSA_Cipher.hpp>
+#include <igcclib/crypto/igcclib_openssl.hpp>
 
 namespace _NS_UTILITY {
 	using BN_ptr = std::shared_ptr<BIGNUM>;

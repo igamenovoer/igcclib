@@ -1,7 +1,7 @@
-#include "OpenniStdDevice.h"
-#include "spdlog/spdlog.h"
-#include "spdlog/sinks/null_sink.h"
-#include "igcpp/common/util_logging.h"
+#include <OpenniStdDevice.h>
+#include <spdlog/spdlog.h>
+#include <spdlog/sinks/null_sink.h>
+#include <igcclib/core/igcclib_logging.hpp>
 
 namespace ni = openni;
 

@@ -6,8 +6,8 @@
 #include <Ole2.h>
 #include <Kinect.h>
 
-#include "KinectReader.h"
-#include "spdlog/spdlog.h"
+#include <igcclib/device/kinect_v2/KinectReader.hpp>
+#include <spdlog/spdlog.h>
 
 namespace _NS_UTILITY {
 

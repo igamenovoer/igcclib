@@ -1,0 +1,20 @@
+include "matrix.fbs";
+
+namespace fbsdata;
+
+table TriangularMesh
+{
+  name:string;
+  vertices:Matrix_d;
+  faces:Matrix_i32;
+  texcoord:Matrix_d;
+  texfaces:Matrix_i32;
+  normal_vertices:Matrix_d;
+  normal_faces:Matrix_i32;  
+  transmat:Matrix_d;
+
+  //textures
+  texture_image:Matrix_u8;
+}
+
+root_type TriangularMesh;

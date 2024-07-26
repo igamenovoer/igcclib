@@ -1,6 +1,6 @@
-#include "def_azure_kinect.h"
-#include "./../FrameData.h"
-#include "./../../common/util_opencv_eigen.h"
+#include <igcclib/device/azure_kinect/igcclib_device_azure_kinect.hpp>
+#include <igcclib/device/FrameData.hpp>
+#include <igcclib/vision/igcclib_opencv_eigen.hpp>
 
 namespace _NS_UTILITY
 {

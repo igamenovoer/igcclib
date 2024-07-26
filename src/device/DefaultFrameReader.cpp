@@ -1,5 +1,5 @@
-#include "DefaultFrameReader.h"
-#include "./../common/util_opencv_eigen.h"
+#include <igcclib/device/DefaultFrameReader.hpp>
+#include <igcclib/vision/igcclib_opencv_eigen.hpp>
 
 namespace _NS_UTILITY
 {

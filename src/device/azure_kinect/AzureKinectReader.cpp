@@ -1,5 +1,5 @@
-#include "AzureKinectReader.h"
-#include "./../../common/util_opencv_eigen.h"
+#include <igcclib/device/azure_kinect/AzureKinectReader.hpp>
+#include <igcclib/vision/igcclib_opencv_eigen.hpp>
 
 namespace _NS_UTILITY
 {

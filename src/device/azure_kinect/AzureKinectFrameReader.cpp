@@ -1,5 +1,5 @@
-#include "AzureKinectFrameReader.h"
-#include "AzureKinectReader.h"
+#include <igcclib/device/azure_kinect/AzureKinectFrameReader.hpp>
+#include <igcclib/device/azure_kinect/AzureKinectReader.hpp>
 
 namespace _NS_UTILITY
 {

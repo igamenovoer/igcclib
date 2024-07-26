@@ -1,4 +1,4 @@
-#include "FrameRecorder.h"
+#include <igcclib/device/FrameRecorder.hpp>
 #include "./../io/io_filesys.h"
 #include "./../io/io_numpy.h"
 #include "./../io/io_numpy_opencv.h"
@@ -7,13 +7,13 @@
 	#include "./../io/io_compression.h"
 #endif
 
-#include "./../common/util_logging.h"
-#include "cereal/cereal.hpp"
-#include "cereal/archives/portable_binary.hpp"
+#include <igcclib/core/igcclib_logging.hpp>
+#include <cereal/cereal.hpp>
+#include <cereal/archives/portable_binary.hpp>
 
-#include "boost/uuid/uuid.hpp"
-#include "boost/uuid/uuid_io.hpp"
-#include "boost/uuid/uuid_generators.hpp"
+#include <boost/uuid/uuid.hpp>
+#include <boost/uuid/uuid_io.hpp>
+#include <boost/uuid/uuid_generators.hpp>
 
 namespace _NS_UTILITY
 {

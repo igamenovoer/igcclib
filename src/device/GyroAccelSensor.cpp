@@ -1,5 +1,5 @@
-#include "GyroAccelSensor.h"
-#include "igcpp/math/geometry.h"
+#include <igcclib/device/GyroAccelSensor.hpp>
+#include <igcclib/geometry/geometry.hpp>
 
 namespace _NS_UTILITY
 {
