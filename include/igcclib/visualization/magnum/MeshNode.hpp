@@ -1,7 +1,9 @@
 #pragma once
 
-#include "def_magnum.h"
-#include "SceneNode.h"
+#include <map>
+
+#include "igcclib_magnum_def.hpp"
+#include "SceneNode.hpp"
 
 #include <Magnum/SceneGraph/SceneGraph.h>
 #include <Magnum/SceneGraph/Scene.h>
@@ -9,7 +11,7 @@
 #include <Magnum/SceneGraph/Drawable.h>
 #include <Magnum/SceneGraph/MatrixTransformation3D.h>
 #include <Magnum/SceneGraph/Camera.h>
-#include <map>
+
 
 namespace _NS_UTILITY {
 	namespace MagnumProc {

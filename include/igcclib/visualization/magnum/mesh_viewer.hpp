@@ -26,11 +26,11 @@
 #include <map>
 #include <numeric>
 
-#include "./../../mesh/TriangularMesh.h"
-#include "./../../common/util_obj_eigen.h"
-#include "util_magnum.h"
-#include "util_magnum_eigen.h"
-#include "./../../mesh/helpers.h"
+#include <igcclib/geometry/TriangularMesh.hpp>
+#include <igcclib/geometry/igcclib_obj_eigen.hpp>
+#include <igcclib/geometry/igcclib_mesh_helpers.hpp>
+#include "igcclib_magnum.hpp"
+#include "igcclib_magnum_engine.hpp"
 
 namespace _NS_UTILITY {
 

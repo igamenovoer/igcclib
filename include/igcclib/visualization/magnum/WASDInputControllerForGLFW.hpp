@@ -1,10 +1,12 @@
 #pragma once
 
-#include "def_magnum.h"
-#include "FPSCameraController.h"
-#include <functional>
-#include <GLFW/glfw3.h>
 #include <chrono>
+#include <functional>
+
+#include "igcclib_magnum_def.hpp"
+#include "FPSCameraController.hpp"
+#include <GLFW/glfw3.h>
+
 
 namespace _NS_UTILITY {
 	namespace MagnumProc {

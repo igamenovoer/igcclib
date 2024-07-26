@@ -1,17 +1,19 @@
 #pragma once
 
-#include "def_magnum.h"
-#include "util_magnum.h"
-#include "MeshNode.h"
-#include "OrthographicCamera.h"
 #include <map>
-#include <random>
 #include <sstream>
 #include <thread>
+
 #include <Magnum/SceneGraph/Scene.h>
 #include <Magnum/GL/DefaultFramebuffer.h>
 #include <Magnum/Shaders/Flat.h>
 #include <GLFW/glfw3.h>
+
+#include "igcclib_magnum.hpp"
+#include "MeshNode.hpp"
+#include "OrthographicCamera.hpp"
+
+
 
 
 namespace _NS_UTILITY {

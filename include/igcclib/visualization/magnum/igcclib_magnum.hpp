@@ -1,12 +1,14 @@
 #pragma once
 
-#include "igcclib_magnum_def.hpp"
-#include "./../../mesh/TriangularMesh.h"
 #include <Magnum/ImageView.h>
 #include <Magnum/Array.h>
 #include <Magnum/PixelFormat.h>
 #include <Magnum/GL/Renderer.h>
 #include <Magnum/Shaders/Flat.h>
+
+#include "igcclib_magnum_def.hpp"
+#include <igcclib/geometry/TriangularMesh.hpp>
+
 namespace _NS_UTILITY
 {
 	namespace MagnumProc {

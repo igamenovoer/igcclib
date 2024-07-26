@@ -1,8 +1,8 @@
 #pragma once
 
-#include "def_magnum.h"
-#include "SceneNode.h"
-#include "CameraBase.h"
+#include "igcclib_magnum_def.hpp"
+#include "SceneNode.hpp"
+#include "CameraBase.hpp"
 #include <Magnum/SceneGraph/Camera.h>
 
 namespace _NS_UTILITY {
