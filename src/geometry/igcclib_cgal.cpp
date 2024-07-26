@@ -1,5 +1,6 @@
-#include <CGAL/Barycentric_coordinates_2/triangle_coordinates_2.h>
 #include <igcclib/geometry/igcclib_cgal.hpp>
+
+#include <CGAL/Barycentric_coordinates_2/triangle_coordinates_2.h>
 #include <CGAL/Polygon_mesh_processing/compute_normal.h>
 #include <boost/property_map/function_property_map.hpp>
 #include <CGAL/lloyd_optimize_mesh_2.h>

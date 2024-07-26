@@ -1,13 +1,10 @@
 #pragma once
 
-#include "igcclib_cgal_def.hpp"
-#include <algorithm>
-#include <queue>
-#include <unordered_map>
-
 #include <CGAL/Polyhedron_incremental_builder_3.h>
 #include <CGAL/Polygon_mesh_processing/triangulate_faces.h>
 #include <CGAL/Barycentric_coordinates_2/triangle_coordinates_2.h> 
+
+#include "igcclib_cgal_def.hpp"
 
 // for mean value coordinate
 // #include <CGAL/Barycentric_coordinates_2/Mean_value_2.h>
