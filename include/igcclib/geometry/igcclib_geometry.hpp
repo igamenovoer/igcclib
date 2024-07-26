@@ -3,7 +3,7 @@
 #include <list>
 #include <set>
 
-#include <igcclib/core/igcclib_eigen.hpp>
+#include <igcclib/core/igcclib_eigen_def.hpp>
 
 namespace _NS_UTILITY
 {

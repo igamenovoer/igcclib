@@ -2,9 +2,8 @@
 #include <iostream>
 #include <string>
 
-#include <igcclib/core/igcclib_eigen.hpp>
-#include "igcclib_boost_python.hpp"
-#include "util_python.h"
+#include <igcclib/core/igcclib_eigen_def.hpp>
+#include "igcclib_py_boost.hpp"
 
 namespace _NS_UTILITY
 {

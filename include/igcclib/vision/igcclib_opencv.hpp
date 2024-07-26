@@ -4,7 +4,7 @@
 #include <type_traits>
 
 #include "igcclib_opencv_def.hpp"
-#include <igcclib/core/igcclib_eigen.hpp>
+#include <igcclib/core/igcclib_eigen_def.hpp>
 
 namespace _NS_UTILITY {
 
@@ -72,7 +72,7 @@ namespace _NS_UTILITY {
 	/// <param name="mat">the cvmat</param>
 	/// <returns>whether the data type equals to a primitive type T, without considering channels</returns>
 	template<typename T>
-	bool is_type(const cv::Mat& mat) {
+	IGCCLIB_API bool is_type(const cv::Mat& mat) {
 		return mat.depth() == cv::DataType<T>::type;
 	}
 
@@ -105,7 +105,7 @@ namespace _NS_UTILITY {
 	/// </summary>
 	/// <param name="inout">the cvmat to be converted</param>
 	template<typename T, class = typename std::enable_if<std::is_floating_point<T>::value>::type>
-	void to_floating_point(cv::Mat& inout) {
+	IGCCLIB_API void to_floating_point(cv::Mat& inout) {
 		int cvtype = cv::DataType<T>::type;
 		if (is_type_integer(inout))
 			inout.convertTo(inout, cvtype, 1.0 / 255);

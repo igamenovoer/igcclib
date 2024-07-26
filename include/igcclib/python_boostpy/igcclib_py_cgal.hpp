@@ -1,6 +1,6 @@
 #pragma once
 
-#include "igcclib_boost_python.hpp"
+#include "igcclib_py_boost_def.hpp"
 #include <igcclib/geometry/igcclib_cgal.hpp>
 
 namespace _NS_UTILITY

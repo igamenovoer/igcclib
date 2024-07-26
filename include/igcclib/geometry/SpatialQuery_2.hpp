@@ -1,6 +1,6 @@
 #pragma once
 #include <vector>
-#include <igcclib/core/igcclib_eigen.hpp>
+#include <igcclib/core/igcclib_eigen_def.hpp>
 #include "igcclib_cgal_def.hpp"
 
 #include <CGAL/Kd_tree.h>

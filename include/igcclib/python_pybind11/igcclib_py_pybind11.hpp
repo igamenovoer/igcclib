@@ -1,4 +1,4 @@
-#include <igccplib/core/igcclib_eigen.hpp>
+#include <igccplib/core/igcclib_eigen_def.hpp>
 #include "pybind11/numpy.h"
 #include "pybind11/pybind11.h"
 
@@ -16,7 +16,7 @@ namespace py = pybind11;
  * @param out output numpy array, will have type T and shape (N_ROW, N_COL)
  */
 template <typename T, int N_ROW, int N_COL>
-void to_numpy_array(const Eigen::Matrix<T, N_ROW, N_COL, Eigen::RowMajor>& x, py::array_t<T>& out){
+IGCCLIB_API void to_numpy_array(const Eigen::Matrix<T, N_ROW, N_COL, Eigen::RowMajor>& x, py::array_t<T>& out){
 	using M = Eigen::Matrix<T, N_ROW, N_COL, Eigen::RowMajor>;
 	out.resize({x.rows(), x.cols()});
 	auto buf = out.request(true);
@@ -33,7 +33,7 @@ void to_numpy_array(const Eigen::Matrix<T, N_ROW, N_COL, Eigen::RowMajor>& x, py
 * @param out output eigen matrix
 */
 template <typename T, int N_ROW, int N_COL>
-void to_matrix(py::array_t<T> x, Eigen::Matrix<T, N_ROW, N_COL, Eigen::RowMajor> &out)
+IGCCLIB_API void to_matrix(py::array_t<T> x, Eigen::Matrix<T, N_ROW, N_COL, Eigen::RowMajor> &out)
 {
     using M = Eigen::Matrix<T, N_ROW, N_COL, Eigen::RowMajor>;
 

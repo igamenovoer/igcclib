@@ -1,6 +1,6 @@
 #include <iostream>
 #include <spdlog/spdlog.h>
-#include <igcclib/core/igcclib_eigen.hpp>
+#include <igcclib/core/igcclib_eigen_def.hpp>
 
 int main(){
     int x = 100;
