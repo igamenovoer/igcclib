@@ -1,5 +1,5 @@
-#include "./../graph/graph_algorithms.h"
-#include "./../graph/GeometricGraph.h"
+#include <igcclib/graph/igcclib_graph_algorithms.hpp>
+#include <igcclib/graph/GeometricGraph.hpp>
 
 using namespace _NS_UTILITY;
 int main()

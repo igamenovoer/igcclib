@@ -3,7 +3,7 @@
 #include <string>
 
 #include <igcclib/core/igcclib_eigen_def.hpp>
-#include "igcclib_py_boost.hpp"
+#include <igcclib/python_boostpy/igcclib_py_boost.hpp>
 
 namespace _NS_UTILITY
 {

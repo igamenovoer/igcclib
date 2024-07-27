@@ -1,7 +1,7 @@
 #pragma once
 
-#include "igcclib_magnum_def.hpp"
-#include "igcclib_magnum_eigen.hpp"
+#include <igcclib/visualization/magnum/igcclib_magnum_def.hpp>
+#include <igcclib/visualization/magnum/igcclib_magnum_eigen.hpp>
 #include <limits>
 
 namespace _NS_UTILITY {

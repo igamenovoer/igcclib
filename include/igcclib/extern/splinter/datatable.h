@@ -11,9 +11,8 @@
 #define SPLINTER_DATATABLE_H
 
 #include <set>
-#include "datapoint.h"
-
 #include <ostream>
+#include <igcclib/extern/splinter/datapoint.h>
 
 namespace SPLINTER
 {

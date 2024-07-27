@@ -10,8 +10,8 @@
 #include <boost/graph/dijkstra_shortest_paths.hpp>
 #include <boost/property_map/transform_value_property_map.hpp>
 
-#include "igcclib_graph_def.hpp"
-#include "UndirectedGraph.hpp"
+#include <igcclib/graph/igcclib_graph_def.hpp>
+#include <igcclib/graph/UndirectedGraph.hpp>
 
 namespace _NS_UTILITY
 {

@@ -1,5 +1,5 @@
 #pragma once
-#include "igcclib_magnum_def.hpp"
+#include <igcclib/visualization/magnum/igcclib_magnum_def.hpp>
 #include <igcclib/core/igcclib_eigen_def.hpp>
 
 #include <vector>

@@ -7,7 +7,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-#include "knots.h"
+#include <igcclib/extern/splinter/knots.h>
 #include <algorithm>
 
 namespace SPLINTER

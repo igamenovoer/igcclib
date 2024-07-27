@@ -1,7 +1,7 @@
 #pragma once
 
 #include <string>
-#include "openssl/err.h"
+#include <openssl/err.h>
 
 namespace _NS_UTILITY {
 	inline std::string get_openssl_error() {

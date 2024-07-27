@@ -1,5 +1,5 @@
 #pragma once
-#include "igcclib_opencv_def.hpp"
+#include <igcclib/vision/igcclib_opencv_def.hpp>
 
 namespace _NS_UTILITY
 {

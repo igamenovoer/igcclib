@@ -7,9 +7,9 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-#include "cinterface/cinterface.h"
-#include "cinterface/utilities.h"
-#include "datatable.h"
+#include <igcclib/extern/splinter/cinterface/cinterface.h>
+#include <igcclib/extern/splinter/cinterface/utilities.h>
+#include <igcclib/extern/splinter/datatable.h>
 //#include <fstream>
 
 using namespace SPLINTER;

@@ -1,5 +1,5 @@
 #pragma once
-#include "UndirectedGraph.hpp"
+#include <igcclib/graph/UndirectedGraph.hpp>
 #include <igcclib/core/igcclib_eigen_def.hpp>
 
 namespace _NS_UTILITY

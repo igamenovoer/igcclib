@@ -6,7 +6,7 @@
 #include <Magnum/GL/Renderer.h>
 #include <Magnum/Shaders/Flat.h>
 
-#include "igcclib_magnum_def.hpp"
+#include <igcclib/visualization/magnum/igcclib_magnum_def.hpp>
 #include <igcclib/geometry/TriangularMesh.hpp>
 
 namespace _NS_UTILITY

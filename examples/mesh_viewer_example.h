@@ -1,5 +1,5 @@
 #include <igcclib/geometry/igcclib_obj_eigen.hpp>
-#include "./../plot/mesh_viewer.h"
+#include <igcclib/visualization/soft_renderer/SoftMeshViewer.hpp>
 
 #include <vector>
 #include <cmath>

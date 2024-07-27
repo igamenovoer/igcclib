@@ -1,22 +1,18 @@
 #pragma once
-#include <igcclib/igcclib_master.hpp>
-#include <igcclib/geometry/TriangularMesh.hpp>
-#include <igcclib/geometry/igcclib_obj_eigen.hpp>
-#include "igcclib/io/igcclib_io_flatbuffer.hpp"
-#include "igcclib_io_flatbuffer.hpp"
-
-#include "generated/triangular_mesh_generated.h"
-#include "io_general.hpp"
 #include <string>
 #include <vector>
-#include <map>
 #include <fstream>
 
-# TODO: here
-#include "./../common/util_opencv.h"
-#include "./../common/util_opencv_eigen.h"
-#include "./../common/util_common.h"
-#include "io_filesys.h"
+#include <igcclib/geometry/TriangularMesh.hpp>
+#include <igcclib/geometry/igcclib_obj_eigen.hpp>
+#include <igcclib/vision/igcclib_opencv.hpp>
+#include <igcclib/vision/igcclib_opencv_eigen.hpp>
+#include <igcclib/core/igcclib_common.hpp>
+
+#include <igcclib/io/igcclib_io_general.hpp>
+#include <igcclib/io/igcclib_io_flatbuffer.hpp>
+#include <igcclib/io/generated/triangular_mesh_generated.h>
+#include <igcclib/io/igcclib_io_filesys.hpp>
 
 namespace _NS_UTILITY
 {

@@ -10,8 +10,8 @@
 #ifndef SPLINTER_BSPLINE_H
 #define SPLINTER_BSPLINE_H
 
-#include "function.h"
-#include "bsplinebasis.h"
+#include <igcclib/extern/splinter/function.h>
+#include <igcclib/extern/splinter/bsplinebasis.h>
 
 namespace SPLINTER
 {

@@ -8,8 +8,8 @@
 */
 
 #include <fstream>
-#include "bspline.h"
-#include "cinterface/utilities.h"
+#include <igcclib/extern/splinter/bspline.h>
+#include <igcclib/extern/splinter/cinterface/utilities.h>
 
 using namespace SPLINTER;
 

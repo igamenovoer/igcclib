@@ -2,8 +2,8 @@
 
 #include <map>
 
-#include "igcclib_magnum_def.hpp"
-#include "SceneNode.hpp"
+#include <igcclib/visualization/magnum/igcclib_magnum_def.hpp>
+#include <igcclib/visualization/magnum/SceneNode.hpp>
 
 #include <Magnum/SceneGraph/SceneGraph.h>
 #include <Magnum/SceneGraph/Scene.h>

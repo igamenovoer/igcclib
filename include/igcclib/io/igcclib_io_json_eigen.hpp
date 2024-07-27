@@ -1,8 +1,8 @@
 #pragma once
 
-#include "./../common/def_master.h"
-#include "./../common/def_eigen.h"
-#include "nlohmann/json.hpp"
+#include <igcclib/igcclib_master.hpp>
+#include <igcclib/core/igcclib_eigen.hpp>
+#include <nlohmann/json.hpp>
 
 namespace _NS_UTILITY {
 	template<typename T, int NROW, int NCOL>

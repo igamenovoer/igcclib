@@ -2,8 +2,8 @@
 #include <thread>
 #include <memory>
 
-#include "igcclib_device_def.hpp"
-#include "DeviceReader.hpp"
+#include <igcclib/device/igcclib_device_def.hpp>
+#include <igcclib/device/DeviceReader.hpp>
 
 namespace _NS_UTILITY
 {

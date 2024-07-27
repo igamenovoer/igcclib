@@ -1,7 +1,7 @@
 #pragma once
 
 #include <vector>
-#include "k4a/k4a.h"
+#include <k4a/k4a.h>
 #include <igcclib/device/igcclib_device_def.hpp>
 
 namespace _NS_UTILITY

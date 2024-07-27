@@ -1,6 +1,6 @@
 #pragma once
 
-#include "io_numpy.hpp"
+#include <igcclib/io/igcclib_io_numpy.hpp>
 #include <igcclib/vision/igcclib_opencv_def.hpp>
 
 namespace _NS_UTILITY

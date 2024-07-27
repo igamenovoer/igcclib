@@ -29,8 +29,8 @@
 #include <igcclib/geometry/TriangularMesh.hpp>
 #include <igcclib/geometry/igcclib_obj_eigen.hpp>
 #include <igcclib/geometry/igcclib_mesh_helpers.hpp>
-#include "igcclib_magnum.hpp"
-#include "igcclib_magnum_engine.hpp"
+#include <igcclib/visualization/magnum/igcclib_magnum.hpp>
+#include <igcclib/visualization/magnum/igcclib_magnum_engine.hpp>
 
 namespace _NS_UTILITY {
 

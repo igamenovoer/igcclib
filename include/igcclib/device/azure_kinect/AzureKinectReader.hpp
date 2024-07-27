@@ -1,8 +1,8 @@
 #pragma once
 
-#include <igcclib/device/DeviceReader.hpp>
-#include "igcclib_device_azure_kinect.hpp"
 #include <map>
+#include <igcclib/device/DeviceReader.hpp>
+#include <igcclib/device/azure_kinect/igcclib_device_azure_kinect.hpp>
 
 namespace _NS_UTILITY
 {

@@ -7,7 +7,7 @@
 #include <sstream>
 #include <set>
 
-#include "igcclib_eigen_def.hpp"
+#include <igcclib/core/igcclib_eigen_def.hpp>
 
 namespace _NS_UTILITY
 {

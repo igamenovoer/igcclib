@@ -7,14 +7,15 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-#include "serializer.h"
 #include <fstream>
-#include "definitions.h"
-#include "datapoint.h"
-#include "datatable.h"
-#include "bspline.h"
-#include "bsplinebasis.h"
-#include "bsplinebasis1d.h"
+
+#include <igcclib/extern/splinter/serializer.h>
+#include <igcclib/extern/splinter/definitions.h>
+#include <igcclib/extern/splinter/datapoint.h>
+#include <igcclib/extern/splinter/datatable.h>
+#include <igcclib/extern/splinter/bspline.h>
+#include <igcclib/extern/splinter/bsplinebasis.h>
+#include <igcclib/extern/splinter/bsplinebasis1d.h>
 
 namespace SPLINTER
 {

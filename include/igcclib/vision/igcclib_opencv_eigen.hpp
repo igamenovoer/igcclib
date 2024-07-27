@@ -1,7 +1,7 @@
 #pragma once
 #include <igcclib/igcclib_master.hpp>
 #include <igcclib/core/igcclib_eigen_def.hpp>
-#include "igcclib_opencv_def.hpp"
+#include <igcclib/vision/igcclib_opencv_def.hpp>
 
 namespace _NS_UTILITY
 {

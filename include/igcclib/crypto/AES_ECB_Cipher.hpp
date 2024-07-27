@@ -1,6 +1,6 @@
 #pragma once
 
-#include "igcclib_crypto_def.hpp"
+#include <igcclib/crypto/igcclib_crypto_def.hpp>
 
 namespace _NS_UTILITY {
 

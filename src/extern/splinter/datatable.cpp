@@ -6,15 +6,15 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
-
-#include "datatable.h"
 #include <string>
 #include <fstream>
 #include <iomanip>
 #include <stdexcept>
 #include <limits>
-#include "serializer.h"
 #include <initializer_list>
+
+#include <igcclib/extern/splinter/serializer.h>
+#include <igcclib/extern/splinter/datatable.h>
 
 namespace SPLINTER
 {

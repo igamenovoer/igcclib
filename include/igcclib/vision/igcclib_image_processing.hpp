@@ -3,8 +3,8 @@
 
 #include <igcclib/igcclib_master.hpp>
 #include <igcclib/core/igcclib_eigen.hpp>
-#include "igcclib_opencv_eigen.hpp"
-#include "igcclib_opencv.hpp"
+#include <igcclib/vision/igcclib_opencv_eigen.hpp>
+#include <igcclib/vision/igcclib_opencv.hpp>
 
 namespace _NS_UTILITY
 {

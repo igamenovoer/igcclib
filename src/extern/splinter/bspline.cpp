@@ -7,13 +7,13 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-#include "bspline.h"
-#include "bsplinebasis.h"
-#include "mykroneckerproduct.h"
-#include "unsupported/Eigen/KroneckerProduct"
-#include "linearsolvers.h"
-#include "serializer.h"
-#include "utilities.h"
+#include <unsupported/Eigen/KroneckerProduct>
+#include <igcclib/extern/splinter/bspline.h>
+#include <igcclib/extern/splinter/bsplinebasis.h>
+#include <igcclib/extern/splinter/mykroneckerproduct.h>
+#include <igcclib/extern/splinter/linearsolvers.h>
+#include <igcclib/extern/splinter/serializer.h>
+#include <igcclib/extern/splinter/utilities.h>
 #include <iostream>
 
 namespace SPLINTER

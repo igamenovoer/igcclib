@@ -7,10 +7,10 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-#include "bsplinebasis1d.h"
-#include "knots.h"
+#include <igcclib/extern/splinter/bsplinebasis1d.h>
+#include <igcclib/extern/splinter/knots.h>
+#include <igcclib/extern/splinter/utilities.h>
 #include <algorithm>
-#include "utilities.h"
 #include <iostream>
 
 namespace SPLINTER

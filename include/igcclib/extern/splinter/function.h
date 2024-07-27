@@ -10,8 +10,8 @@
 #ifndef SPLINTER_FUNCTION_H
 #define SPLINTER_FUNCTION_H
 
-#include "definitions.h"
-#include "saveable.h"
+#include <igcclib/extern/splinter/definitions.h>
+#include <igcclib/extern/splinter/saveable.h>
 
 namespace SPLINTER
 {

@@ -18,7 +18,7 @@
 #include <type_traits>
 #include <atomic>
 
-#include "igcclib_api.h"
+#include <igcclib/igcclib_api.h>
 
 //you need to specifically turn off assert print if you want
 #ifndef _ASSERT_NO_PRINT

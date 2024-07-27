@@ -7,7 +7,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-#include "utilities.h"
+#include <igcclib/extern/splinter/utilities.h>
 
 namespace SPLINTER
 {

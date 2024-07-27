@@ -9,9 +9,9 @@
 #include <Magnum/Shaders/Flat.h>
 #include <GLFW/glfw3.h>
 
-#include "igcclib_magnum.hpp"
-#include "MeshNode.hpp"
-#include "OrthographicCamera.hpp"
+#include <igcclib/visualization/magnum/igcclib_magnum.hpp>
+#include <igcclib/visualization/magnum/MeshNode.hpp>
+#include <igcclib/visualization/magnum/OrthographicCamera.hpp>
 
 
 

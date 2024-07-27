@@ -1,6 +1,6 @@
 #pragma once
 
-#include "igcclib_device_def.hpp"
+#include <igcclib/device/igcclib_device_def.hpp>
 
 namespace _NS_UTILITY
 {

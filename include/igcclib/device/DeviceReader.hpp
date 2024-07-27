@@ -1,8 +1,8 @@
 #pragma once
 
 #include <set>
-#include "igcclib_device_def.hpp"
-#include "FrameData.hpp"
+#include <igcclib/device/igcclib_device_def.hpp>
+#include <igcclib/device/FrameData.hpp>
 
 
 namespace _NS_UTILITY

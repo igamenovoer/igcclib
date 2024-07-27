@@ -1,6 +1,6 @@
 #pragma once
 
-#include "igcclib_device_azure_kinect.hpp"
+#include <igcclib/device/azure_kinect/igcclib_device_azure_kinect.hpp>
 #include <igcclib/device/DefaultFrameReader.hpp>
 
 namespace _NS_UTILITY

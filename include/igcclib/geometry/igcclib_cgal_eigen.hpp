@@ -2,7 +2,7 @@
 //CGAL and Eigen interop
 
 #include <igcclib/core/igcclib_eigen_def.hpp>
-#include "igcclib_cgal_def.hpp"
+#include <igcclib/geometry/igcclib_cgal_def.hpp>
 
 namespace _NS_UTILITY
 {

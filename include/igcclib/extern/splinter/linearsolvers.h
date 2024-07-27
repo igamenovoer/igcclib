@@ -10,7 +10,7 @@
 #ifndef SPLINTER_LINEARSOLVER_H
 #define SPLINTER_LINEARSOLVER_H
 
-#include "definitions.h"
+#include <igcclib/extern/splinter/definitions.h>
 #if defined(__GNUC__) && !defined(__clang__)
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wignored-attributes"

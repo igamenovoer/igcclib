@@ -1,8 +1,8 @@
 #pragma once
 
-#include "msgpk_Master.h"
-#include "msgpk_Eigen.h"
-#include "./../mesh/TriangularMesh.h"
+#include <igcclib/io/igcclib_io_msgpk_Master.hpp>
+#include <igcclib/io/igcclib_io_msgpk_Eigen.hpp>
+#include <igcclib/geometry/TriangularMesh.hpp>
 
 _MSGPK_CUSTOM_ADAPTOR_BEGIN
 

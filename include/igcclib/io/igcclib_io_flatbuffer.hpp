@@ -1,8 +1,8 @@
 #pragma once
+
 #include <igcclib/igcclib_master.hpp>
 #include <igcclib/core/igcclib_eigen_def.hpp>
-
-#include "generated/matrix_generated.h"
+#include <igcclib/io/generated/matrix_generated.h>
 #include <vector>
 
 namespace _NS_UTILITY

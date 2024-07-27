@@ -4,7 +4,7 @@
 #include <CGAL/Polygon_mesh_processing/triangulate_faces.h>
 #include <CGAL/Barycentric_coordinates_2/triangle_coordinates_2.h> 
 
-#include "igcclib_cgal_def.hpp"
+#include <igcclib/geometry/igcclib_cgal_def.hpp>
 
 // for mean value coordinate
 // #include <CGAL/Barycentric_coordinates_2/Mean_value_2.h>

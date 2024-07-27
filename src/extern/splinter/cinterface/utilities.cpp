@@ -7,8 +7,8 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
 */
 
-#include <bspline.h>
-#include "cinterface/utilities.h"
+#include <igcclib/extern/splinter/bspline.h>
+#include <igcclib/extern/splinter/cinterface/utilities.h>
 
 namespace SPLINTER
 {

@@ -10,10 +10,10 @@
 #ifndef SPLINTER_UTILITIES_H
 #define SPLINTER_UTILITIES_H
 
-#include "datatable.h"
-#include "function.h"
-#include "cinterface.h"
-#include "bspline.h"
+#include <igcclib/extern/splinter/datatable.h>
+#include <igcclib/extern/splinter/function.h>
+#include <igcclib/extern/splinter/cinterface/cinterface.h>
+#include <igcclib/extern/splinter/bspline.h>
 
 namespace SPLINTER
 {

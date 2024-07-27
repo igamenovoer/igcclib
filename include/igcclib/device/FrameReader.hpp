@@ -1,6 +1,6 @@
 #pragma once
 
-#include "FrameData.hpp"
+#include <igcclib/device/FrameData.hpp>
 
 namespace _NS_UTILITY
 {

@@ -1,8 +1,7 @@
 #pragma once
 
-#include "msgpk_Master.h"
-
-#include "./../common/def_eigen.h"
+#include <igcclib/io/igcclib_io_msgpk_Master.hpp>
+#include <igcclib/core/igcclib_eigen_def.hpp>
 
 _MSGPK_CUSTOM_ADAPTOR_BEGIN
 

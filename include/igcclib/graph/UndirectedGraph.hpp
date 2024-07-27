@@ -1,9 +1,7 @@
 #pragma once
-#include <map>
-#include <boost/graph/adjacency_list.hpp>
 #include <vector>
-
-#include "igcclib_graph_def.hpp"
+#include <boost/graph/adjacency_list.hpp>
+#include <igcclib/graph/igcclib_graph_def.hpp>
 
 //#include <boost/property_map/dynamic_property_map.hpp>
 

@@ -1,6 +1,5 @@
 #pragma once
-//#include "./../common/def_master.h"
-#include "igcclib_io_general.hpp"
+#include <igcclib/io/igcclib_io_general.hpp>
 
 #include <string>
 #include <strstream>

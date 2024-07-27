@@ -1,7 +1,7 @@
 #pragma once
 
-#include "igcclib_graph_def.hpp"
-#include "GeometricGraph.hpp"
+#include <igcclib/graph/igcclib_graph_def.hpp>
+#include <igcclib/graph/GeometricGraph.hpp>
 #include <igcclib/geometry/TriangularMesh.hpp>
 
 namespace _NS_UTILITY {

@@ -1,7 +1,7 @@
 #pragma once
 #include <vector>
 #include <igcclib/core/igcclib_eigen_def.hpp>
-#include "igcclib_cgal_def.hpp"
+#include <igcclib/geometry/igcclib_cgal_def.hpp>
 
 #include <CGAL/Kd_tree.h>
 #include <CGAL/Search_traits_2.h>

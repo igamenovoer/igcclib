@@ -13,7 +13,7 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include "definitions.h"
+#include <igcclib/extern/splinter/definitions.h>
 #include <set>
 #include <stdint.h>
 #include <type_traits>

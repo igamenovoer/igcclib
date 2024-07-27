@@ -5,9 +5,9 @@
 #include <map>
 
 #include <igcclib/core/igcclib_common.hpp>
-#include "igcclib_obj_eigen.hpp"
+#include <igcclib/geometry/igcclib_obj_eigen.hpp>
 #include <igcclib/vision/igcclib_opencv_eigen.hpp>
-#include "TriangularMesh.hpp"
+#include <igcclib/geometry/TriangularMesh.hpp>
 
 namespace _NS_UTILITY
 {

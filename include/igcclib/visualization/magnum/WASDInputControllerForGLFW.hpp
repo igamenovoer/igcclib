@@ -3,8 +3,8 @@
 #include <chrono>
 #include <functional>
 
-#include "igcclib_magnum_def.hpp"
-#include "FPSCameraController.hpp"
+#include <igcclib/visualization/magnum/igcclib_magnum_def.hpp>
+#include <igcclib/visualization/magnum/FPSCameraController.hpp>
 #include <GLFW/glfw3.h>
 
 

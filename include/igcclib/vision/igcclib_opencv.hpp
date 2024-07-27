@@ -3,7 +3,7 @@
 #include <cmath>
 #include <type_traits>
 
-#include "igcclib_opencv_def.hpp"
+#include <igcclib/vision/igcclib_opencv_def.hpp>
 #include <igcclib/core/igcclib_eigen_def.hpp>
 
 namespace _NS_UTILITY {

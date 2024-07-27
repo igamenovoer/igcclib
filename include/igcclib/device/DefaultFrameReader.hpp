@@ -1,6 +1,6 @@
 #pragma once
 
-#include "FrameReader.hpp"
+#include <igcclib/device/FrameReader.hpp>
 
 namespace _NS_UTILITY
 {

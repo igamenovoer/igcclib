@@ -1,5 +1,5 @@
 #pragma once
-#include "TriangularMesh.hpp"
+#include <igcclib/geometry/TriangularMesh.hpp>
 #include <igcclib/geometry/igcclib_cgal.hpp>
 
 namespace _NS_UTILITY
