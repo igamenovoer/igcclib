@@ -1,0 +1,15 @@
+# required input: DependencyList, ComponentName
+
+# add dependecy check
+include(CMakeFindDependencyMacro)
+
+# foreach library in DependencyList, find_dependency(library)
+# e.g., "OpenCV;Eigen3;spdlog"
+foreach(dep @DependencyList@)
+  find_dependency(${dep})
+endforeach()
+
+# given ComponentName, include the target file
+set(component @ComponentName@)
+set(component_cmake_file @ComponentName@-$<CONFIG>-targets.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/cmake/${component_cmake_file})
