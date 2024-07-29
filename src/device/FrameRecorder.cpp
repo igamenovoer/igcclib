@@ -1,10 +1,10 @@
 #include <igcclib/device/FrameRecorder.hpp>
-#include "./../io/io_filesys.h"
-#include "./../io/io_numpy.h"
-#include "./../io/io_numpy_opencv.h"
+#include <igcclib/io/igcclib_io_filesys.hpp>
+#include <igcclib/io/igcclib_io_numpy.hpp>
+#include <igcclib/io/igcclib_io_numpy_opencv.hpp>
 
 #ifdef FRAME_RECORDER_WITH_COMPRESSION
-	#include "./../io/io_compression.h"
+	#include <igcclib/io/igcclib_io_compression.hpp>
 #endif
 
 #include <igcclib/core/igcclib_logging.hpp>

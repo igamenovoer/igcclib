@@ -21,4 +21,4 @@ find_package(CGAL REQUIRED)
 target_link_libraries(${component} PUBLIC Eigen3::Eigen CGAL::CGAL ${master_name}::core)
 
 # create install rules for the component
-create_component_install_rules(${component} ${master_name} "")
+create_component_install_rules(${component} ${master_name} "core")

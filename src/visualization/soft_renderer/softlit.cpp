@@ -15,6 +15,8 @@
 #include <igcclib/soft_renderer/softlit/AnalysisShader.h>
 #include <igcclib/soft_renderer/softlit_helpers.h>
 
+#include <igcclib/geometry/TriangularMesh.hpp>
+
 namespace _NS_UTILITY {
 	void to_softlit_primitive(
 		softlit::Primitive& output, const TriangularMesh& _tmesh, bool create_texture)

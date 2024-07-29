@@ -1,5 +1,5 @@
 #pragma once
-
+#include <memory>
 #include <igcclib/visualization/soft_renderer/softlit/Master.h>
 #include <igcclib/visualization/soft_renderer/softlit/Shaders.h>
 

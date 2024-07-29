@@ -2,7 +2,8 @@
 #include <igcclib/io/igcclib_io_general.hpp>
 
 #include <string>
-#include <strstream>
+#include <sstream>
+// #include <strstream>
 #include <cereal/cereal.hpp>
 #include <cereal/archives/portable_binary.hpp>
 
@@ -82,7 +83,9 @@ namespace _NS_UTILITY
 		}
 
 		//deserialize
-		std::strstream ss(ucdata.data(), ucdata.size());
+		// std::strstream ss(ucdata.data(), ucdata.size());
+		std::stringstream ss;
+		ss.write(ucdata.data(), ucdata.size());
 		cereal::PortableBinaryInputArchive ia(ss);
 		ia(*output);
 	}

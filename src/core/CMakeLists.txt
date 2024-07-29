@@ -26,4 +26,4 @@ target_link_libraries(${component} INTERFACE
     nanoflann::nanoflann
 )
 
-create_component_install_rules(${component} ${master_name} "")
+create_component_install_rules(${component} ${master_name} "extern")

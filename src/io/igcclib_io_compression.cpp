@@ -1,4 +1,4 @@
-#include "io_compression.h"
+#include <igcclib/io/igcclib_io_compression.hpp>
 #include "zstd.h"
 
 namespace _NS_UTILITY
