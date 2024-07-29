@@ -9,7 +9,7 @@ namespace _NS_UTILITY {
 	 *
 	 * \brief PKCS5 padding is used in all encryption/decryption.
 	 */
-	class AES_ECB_Cipher {
+	class IGCCLIB_API AES_ECB_Cipher {
 	protected:
 		std::string m_key; //the key in plain text
 		std::string m_key_ext; //the padded key

@@ -1,6 +1,7 @@
 
 function(get_component_export_target_filename component output_var)
-    set(${output_var} ${component}-${CMAKE_BUILD_TYPE}-targets.cmake PARENT_SCOPE)
+    # set(${output_var} ${component}-${CMAKE_BUILD_TYPE}-targets.cmake PARENT_SCOPE)
+    set(${output_var} ${component}-targets.cmake PARENT_SCOPE)
     # set(${output_var} ${component}-$<CONFIG>-targets.cmake PARENT_SCOPE)
 endfunction()
 

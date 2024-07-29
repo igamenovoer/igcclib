@@ -1,0 +1,16 @@
+include(${CMAKE_SOURCE_DIR}/cmake/component-helpers.cmake)
+set(component compression)
+
+# core library is header only
+set(src_files  
+    ${CMAKE_CURRENT_LIST_DIR}/compression.cpp
+)
+set_source_files_properties(${src_files} PROPERTIES LANGUAGE CXX)
+
+create_component_library(${component} ${master_name} ${src_files})
+
+# setup component linking
+# target_link_libraries(${component} PUBLIC Eigen3::Eigen CGAL::CGAL ${master_name}::core)
+
+# create install rules for the component
+create_component_install_rules(${component} ${master_name} "")

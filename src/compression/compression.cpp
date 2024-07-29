@@ -1,4 +1,3 @@
-#pragma once
 #include <igcclib/extern/miniz.h>
 #include <igcclib/compression/compression.hpp>
 

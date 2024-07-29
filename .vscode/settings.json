@@ -5,6 +5,7 @@
     ],
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
     "cmake.configureSettings": {
-        "CMAKE_INSTALL_PREFIX": "${workspaceFolder}/install"
+        "CMAKE_INSTALL_PREFIX": "${workspaceFolder}/install",
+        "BUILD_SHARED_LIBS": "ON"
     }
 }

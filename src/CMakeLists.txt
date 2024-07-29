@@ -2,6 +2,9 @@ cmake_minimum_required(VERSION 3.20)
 
 add_subdirectory(core)
 add_subdirectory(extern)
+add_subdirectory(geometry)
+add_subdirectory(compression)
+add_subdirectory(crypto)
 
 # find_package(Eigen3 REQUIRED)
 # find_package(Boost)

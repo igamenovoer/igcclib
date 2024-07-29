@@ -10,7 +10,7 @@ namespace _NS_UTILITY {
 	};
 
 	//RSA encryption and decryption using openssl
-	class RSA_Cipher {
+	class IGCCLIB_API RSA_Cipher {
 	protected:
 		std::shared_ptr<void> m_rsa; //openssl rsa data, we want to avoid the openssl headers here
 		RSA_Padding m_pad_type = RSA_Padding::PKCS1;
