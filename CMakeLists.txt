@@ -8,7 +8,7 @@ set(master_name "igcclib")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_DEBUG_POSTFIX d)
-set(IGCCLIB_OUTPUT_PREFIX "igcclib-")
+set(IGCCLIB_OUTPUT_PREFIX "${master_name}-")
 
 # add ./cmake to module path
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")

@@ -1,4 +1,3 @@
-#include <iostream>
 #include <spdlog/spdlog.h>
 #include <igcclib/core/igcclib_eigen_def.hpp>
 

@@ -2,8 +2,6 @@
 # see https://cmake.org/cmake/help/latest/module/CMakePackageConfigHelpers.html
 # also see https://stackoverflow.com/questions/75845254/how-does-cmake-s-configure-package-config-file-work
 # required input: 
-# ConfigDependsLibrary : list of libraries that this component depends on, for use with find_dependency()
-# ConfigComponentName : name of the component
 # ConfigMasterName : name of the master package
 
 @PACKAGE_INIT@
@@ -20,29 +18,29 @@ include(${PACKAGE_PREFIX_DIR}/cmake/component-helpers.cmake)
 set(masetr_name @ConfigMasterName@)
 
 # asking to find components?
-set(all_components "core")
+set(comps_to_load "core")
 if(${master_name}_FIND_COMPONENTS)
     set(comps ${${master_name}_FIND_COMPONENTS})
 
     # add dependent components
     foreach(comp ${comps})
         if(${comp}_REQUIRED_COMPONENTS)
-            list(APPEND all_components ${${comp}_REQUIRED_COMPONENTS})
+            list(APPEND comps_to_load ${${comp}_REQUIRED_COMPONENTS})
         endif()
     endforeach()
 
     # remove duplicates
-    list(REMOVE_DUPLICATES all_components)
+    list(REMOVE_DUPLICATES comps_to_load)
 endif()
 
 # load all components
-foreach(comp ${all_components})
+foreach(comp ${comps_to_load})
     get_component_cmake_output_dir(${comp} comp_output_dir)
     get_component_export_target_filename(${comp} comp_export_target_filename)
     include(${PACKAGE_PREFIX_DIR}/${comp_output_dir}/${comp_export_target_filename})
 endforeach()
 
 # check if all components are found
-foreach(comp ${all_components})
+foreach(comp ${comps_to_load})
     check_required_components(${masetr_name}::${comp})
 endforeach()
