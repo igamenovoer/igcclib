@@ -1,4 +1,5 @@
 include(${PROJECT_SOURCE_DIR}/cmake/component-helpers.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/igcclib-dependency.cmake)
 include(FindPackageHandleStandardArgs)
 
 set(component visualization)
@@ -26,9 +27,9 @@ target_link_libraries(${component} PUBLIC
 
 # create install rules for the component
 # create_component_install_rules(${component} ${master_name} "core;extern;geometry")
-
+set(required_comps ${${component}_REQUIRED_COMPONENTS})
 create_component_install_rules(
     COMPONENT ${component} 
     MASTER_NAME ${master_name} 
-    REQUIRED_COMPONENTS "core" "extern" "geometry"
+    REQUIRED_COMPONENTS ${required_comps}
 )

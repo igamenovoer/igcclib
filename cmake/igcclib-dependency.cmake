@@ -1,0 +1,15 @@
+# component dependency information
+
+set(core_REQUIRED_COMPONENTS "" PARENT_SCOPE)
+set(compression_REQUIRED_COMPONENTS core PARENT_SCOPE)
+set(crypto_REQUIRED_COMPONENTS "" PARENT_SCOPE)
+set(device_REQUIRED_COMPONENTS core vision io PARENT_SCOPE)
+set(extern_REQUIRED_COMPONENTS "" PARENT_SCOPE)
+set(geometry_REQUIRED_COMPONENTS core PARENT_SCOPE)
+set(graph_REQUIRED_COMPONENTS core PARENT_SCOPE)
+set(io_REQUIRED_COMPONENTS core PARENT_SCOPE)
+set(math_REQUIRED_COMPONENTS core extern PARENT_SCOPE)
+set(python_boostpy_REQUIRED_COMPONENTS core PARENT_SCOPE)
+set(python_pybind11_REQUIRED_COMPONENTS core PARENT_SCOPE)
+set(vision_REQUIRED_COMPONENTS core extern PARENT_SCOPE)
+set(visualization_REQUIRED_COMPONENTS core extern geometry PARENT_SCOPE)

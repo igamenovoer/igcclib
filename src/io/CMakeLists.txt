@@ -1,4 +1,5 @@
 include(${PROJECT_SOURCE_DIR}/cmake/component-helpers.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/igcclib-dependency.cmake)
 include(FindPackageHandleStandardArgs)
 
 # ====== create header-only target ==========
@@ -30,35 +31,6 @@ find_package(ZSTD REQUIRED)
 
 # you will then have target:
 # ZSTD::ZSTD
-
-# message(STATUS "Using pkg-config to find zstd, if you are on Windows, you may need to install pkgconf using vcpkg")
-# find_package(PkgConfig QUIET)
-# if (NOT PkgConfig_FOUND)
-#     message(STATUS "pkg-config not found, trying to find zstd.h and libzstd directly")
-#     find_path(ZSTD_INCLUDE_DIR NAMES zstd.h)
-#     find_library(ZSTD_LIBRARY NAMES zstd)
-#     if (ZSTD_INCLUDE_DIR AND ZSTD_LIBRARY)
-#         message(STATUS "Found zstd: ${ZSTD_LIBRARY}")
-#         add_library(PkgConfig::ZSTD INTERFACE IMPORTED)
-#         target_include_directories(PkgConfig::ZSTD INTERFACE ${ZSTD_INCLUDE_DIR})
-#         target_link_libraries(PkgConfig::ZSTD INTERFACE ${ZSTD_LIBRARY})
-#     else()
-#         message(FATAL_ERROR "zstd not found")
-#     endif()
-# else()
-#     message(STATUS "Using pkg-config to find zstd")
-#     find_package(PkgConfig REQUIRED)
-#     pkg_check_modules(ZSTD REQUIRED IMPORTED_TARGET libzstd)
-#     list(APPEND dep_libs PkgConfig::ZSTD)
-# endif()
-
-# message(STATUS "Using pkg-config to find zstd")
-# message(STATUS "If you are on Windows, you may need to install pkgconf using vcpkg")
-# find_package(PkgConfig QUIET)
-# if (NOT PkgConfig_FOUND)
-#     message(FATAL_ERROR "pkg-config not found")
-# pkg_check_modules(ZSTD REQUIRED IMPORTED_TARGET libzstd)
-
 # add libzstd to the list of dependencies
 list(APPEND dep_libs ZSTD::ZSTD)
 
@@ -73,9 +45,10 @@ target_link_libraries(${component} PUBLIC
 # create_component_install_rules(${component} ${master_name} "extern;core;vision")
 
 # create install rules for the component
+set(required_comps ${${component}_REQUIRED_COMPONENTS})
 create_component_install_rules(
     COMPONENT ${component} 
     MASTER_NAME ${master_name} 
     REQUIRED_LIBRARIES Boost::graph ZSTD
-    REQUIRED_COMPONENTS "core"
+    REQUIRED_COMPONENTS ${required_comps}
 )

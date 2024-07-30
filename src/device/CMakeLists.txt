@@ -1,4 +1,5 @@
 include(${PROJECT_SOURCE_DIR}/cmake/component-helpers.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/igcclib-dependency.cmake)
 set(component device)
 
 # core library is header only
@@ -19,7 +20,9 @@ target_link_libraries(${component} PUBLIC
 )
 
 # create install rules for the component
+set(required_comps ${${component}_REQUIRED_COMPONENTS})
 create_component_install_rules(
     COMPONENT ${component} 
     MASTER_NAME ${master_name} 
-    REQUIRED_COMPONENTS "core" "vision" "io")
+    REQUIRED_COMPONENTS ${required_comps}
+)

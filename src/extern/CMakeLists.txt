@@ -3,6 +3,7 @@
 
 # include(${PROJECT_SOURCE_DIR}/cmake/igcclib-utils.cmake)
 include(${PROJECT_SOURCE_DIR}/cmake/component-helpers.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/igcclib-dependency.cmake)
 set(component extern)
 
 # core library is header only
@@ -38,7 +39,10 @@ target_link_libraries(${component} PUBLIC Eigen3::Eigen)
 # create_component_install_rules(${component} ${master_name} "")
 
 # create install rules for the component
+set(required_comps ${${component}_REQUIRED_COMPONENTS})
 create_component_install_rules(
     COMPONENT ${component} 
     MASTER_NAME ${master_name} 
-    REQUIRED_LIBRARIES Eigen3)
+    REQUIRED_LIBRARIES Eigen3
+    REQUIRED_COMPONENTS ${required_comps}
+)

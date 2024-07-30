@@ -1,13 +1,12 @@
-
 include(CMakePackageConfigHelpers)
 
-function(get_component_export_target_filename component component output_var)
+function(get_component_export_target_filename component output_var)
     set(${output_var} ${component}-targets.cmake PARENT_SCOPE)
 endfunction()
 
 # get .cmake file output dir for component, relative to CMAKE_BINARY_DIR
 function(get_component_cmake_output_dir component output_var)
-    set(${output_var} "lib/cmake/component" PARENT_SCOPE)
+    set(${output_var} "cmake/component" PARENT_SCOPE)
 endfunction()
 
 # create library target for component, named ${component}
@@ -23,7 +22,7 @@ macro(create_component_library component master_name src_files)
     # after install: include
     target_include_directories(${component} PUBLIC
         $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
-        $<INSTALL_INTERFACE:include>
+        # $<INSTALL_INTERFACE:include> # leave it for install(EXPORT)
     )
 
 endmacro()
@@ -41,7 +40,7 @@ macro(create_component_interface component master_name)
     # after install: include
     target_include_directories(${component} INTERFACE
         $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
-        $<INSTALL_INTERFACE:include>
+        # $<INSTALL_INTERFACE:include> # leave it for install(EXPORT)
     )
 endmacro()
 
@@ -64,10 +63,8 @@ macro(create_component_install_rules)
     set(depends_on_libraries ${CREATE_COMPONENT_INSTALL_RULES_REQUIRED_LIBRARIES})
 
     # component .cmake output dir relative to CMAKE_BINARY_DIR
-    # get_component_cmake_output_dir(${component} component_cmake_output_dir)
-    # get_component_export_target_filename(${component} export_target_cmake_filename)
-    set(component_cmake_output_dir lib/cmake/component)
-    set(export_target_cmake_filename ${component}-targets.cmake)
+    get_component_cmake_output_dir(${component} component_cmake_output_dir)
+    get_component_export_target_filename(${component} export_target_cmake_filename)
 
     # copy compiled files to install directory, but we have nothing to copy
     # this is just used to add the include directory to INTERFACE_INCLUDE_DIRECTORIES to the install(EXPORT) target

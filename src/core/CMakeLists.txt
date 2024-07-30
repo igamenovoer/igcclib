@@ -10,6 +10,7 @@
 # https://discourse.cmake.org/t/install-with-export-and-multiple-configurations/1292
 
 include(${PROJECT_SOURCE_DIR}/cmake/component-helpers.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/igcclib-dependency.cmake)
 set(component core)
 
 create_component_interface(${component} ${master_name})
@@ -26,9 +27,10 @@ target_link_libraries(${component} INTERFACE
     nanoflann::nanoflann
 )
 
+set(required_comps ${${component}_REQUIRED_COMPONENTS})
 create_component_install_rules(
     COMPONENT ${component} 
     MASTER_NAME ${master_name} 
-    REQUIRED_COMPONENTS "extern"
+    REQUIRED_COMPONENTS ${required_comps}
     REQUIRED_LIBRARIES Eigen3 spdlog nanoflann
 )

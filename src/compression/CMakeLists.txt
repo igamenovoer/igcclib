@@ -1,4 +1,5 @@
 include(${PROJECT_SOURCE_DIR}/cmake/component-helpers.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/igcclib-dependency.cmake)
 set(component compression)
 
 # core library is header only
@@ -16,4 +17,4 @@ create_component_library(${component} ${master_name} ${src_files})
 create_component_install_rules(
     COMPONENT ${component} 
     MASTER_NAME ${master_name} 
-    REQUIRED_COMPONENTS "core")
+    REQUIRED_COMPONENTS ${${component}_REQUIRED_COMPONENTS})
