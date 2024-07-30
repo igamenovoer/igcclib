@@ -11,4 +11,10 @@ target_link_libraries(${component} INTERFACE
     ${master_name}::core Boost::graph
 )
 
-create_component_install_rules(${component} ${master_name} "extern;core")
+# create install rules for the component
+create_component_install_rules(
+    COMPONENT ${component} 
+    MASTER_NAME ${master_name} 
+    REQUIRED_LIBRARIES Boost::graph
+    REQUIRED_COMPONENTS "core"
+)

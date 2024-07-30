@@ -19,4 +19,8 @@ find_package(OpenSSL REQUIRED)
 target_link_libraries(${component} PRIVATE OpenSSL::Crypto)
 
 # create install rules for the component
-create_component_install_rules(${component} ${master_name} "")
+create_component_install_rules(
+    COMPONENT ${component} 
+    MASTER_NAME ${master_name}
+    REQUIRED_LIBRARIES "OpenSSL"
+)

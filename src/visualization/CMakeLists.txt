@@ -25,4 +25,10 @@ target_link_libraries(${component} PUBLIC
 )
 
 # create install rules for the component
-create_component_install_rules(${component} ${master_name} "core;extern;geometry")
+# create_component_install_rules(${component} ${master_name} "core;extern;geometry")
+
+create_component_install_rules(
+    COMPONENT ${component} 
+    MASTER_NAME ${master_name} 
+    REQUIRED_COMPONENTS "core" "extern" "geometry"
+)

@@ -1,8 +1,8 @@
 
-function(get_component_export_target_filename component output_var)
-    # set(${output_var} ${component}-${CMAKE_BUILD_TYPE}-targets.cmake PARENT_SCOPE)
+include(CMakePackageConfigHelpers)
+
+function(get_component_export_target_filename component component output_var)
     set(${output_var} ${component}-targets.cmake PARENT_SCOPE)
-    # set(${output_var} ${component}-$<CONFIG>-targets.cmake PARENT_SCOPE)
 endfunction()
 
 # get .cmake file output dir for component, relative to CMAKE_BINARY_DIR
@@ -46,13 +46,28 @@ macro(create_component_interface component master_name)
 endmacro()
 
 
-# assuming the component represents a library target, like this:
-# add_library(${component} ...)
-macro(create_component_install_rules component master_name depends_on_components)
+# create_component_install_rules(COMPONENT <component> MASTER_NAME <master_name> REQUIRED_COMPONENTS <depends_on_components> REQUIRED_LIBRARIES <depends_on_libraries>)
+# COMPONENT: the name of the component, there must exists a target with the same name
+# MASTER_NAME: the name of the master project
+# REQUIRED_COMPONENTS: the components that this component depends on
+# REQUIRED_LIBRARIES: the libraries that this component depends on
+macro(create_component_install_rules)
+
+    set(oneValueArgs COMPONENT MASTER_NAME)
+    set(multiValueArgs REQUIRED_COMPONENTS REQUIRED_LIBRARIES)
+    cmake_parse_arguments(CREATE_COMPONENT_INSTALL_RULES "" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+
+    set(component ${CREATE_COMPONENT_INSTALL_RULES_COMPONENT})
+    message(STATUS "Creating install rules for component: ${component}")
+    set(master_name ${CREATE_COMPONENT_INSTALL_RULES_MASTER_NAME})
+    set(depends_on_components ${CREATE_COMPONENT_INSTALL_RULES_REQUIRED_COMPONENTS})
+    set(depends_on_libraries ${CREATE_COMPONENT_INSTALL_RULES_REQUIRED_LIBRARIES})
 
     # component .cmake output dir relative to CMAKE_BINARY_DIR
-    get_component_cmake_output_dir(${component} component_cmake_output_dir)
-    get_component_export_target_filename(${component} export_target_cmake_filename)
+    # get_component_cmake_output_dir(${component} component_cmake_output_dir)
+    # get_component_export_target_filename(${component} export_target_cmake_filename)
+    set(component_cmake_output_dir lib/cmake/component)
+    set(export_target_cmake_filename ${component}-targets.cmake)
 
     # copy compiled files to install directory, but we have nothing to copy
     # this is just used to add the include directory to INTERFACE_INCLUDE_DIRECTORIES to the install(EXPORT) target
@@ -65,10 +80,25 @@ macro(create_component_install_rules component master_name depends_on_components
         RUNTIME DESTINATION bin
     )
 
-    # create cmake files for the target
+    # create cmake target files for the target
     install(EXPORT ${component}-targets
         FILE ${export_target_cmake_filename}
         NAMESPACE ${master_name}::
+        DESTINATION ${component_cmake_output_dir}
+        COMPONENT ${component}
+    )
+
+    # create config file
+    set(ConfigComponentName ${component})
+    set(ConfigMasterName ${master_name})
+    set(ConfigDependsLibrary ${depends_on_libraries})
+    configure_package_config_file(
+        ${CMAKE_SOURCE_DIR}/cmake/config-component.cmake.in
+        ${CMAKE_CURRENT_BINARY_DIR}/${component}-config.cmake
+        INSTALL_DESTINATION ${component_cmake_output_dir}
+    )
+    install(FILES
+        ${CMAKE_CURRENT_BINARY_DIR}/${component}-config.cmake
         DESTINATION ${component_cmake_output_dir}
         COMPONENT ${component}
     )
@@ -88,7 +118,7 @@ macro(create_component_install_rules component master_name depends_on_components
         COMPONENT ${component}
     )
 
-    # finally, copy include files
+    # copy include files
     set(include_base_dir ${CMAKE_SOURCE_DIR}/include/${master_name})
     set(include_dirs ${include_base_dir}/${component})
 

@@ -26,4 +26,9 @@ target_link_libraries(${component} INTERFACE
     nanoflann::nanoflann
 )
 
-create_component_install_rules(${component} ${master_name} "extern")
+create_component_install_rules(
+    COMPONENT ${component} 
+    MASTER_NAME ${master_name} 
+    REQUIRED_COMPONENTS "extern"
+    REQUIRED_LIBRARIES Eigen3 spdlog nanoflann
+)

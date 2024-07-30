@@ -35,4 +35,10 @@ find_package(Eigen3 REQUIRED)
 target_link_libraries(${component} PUBLIC Eigen3::Eigen)
 
 # create install rules for the component
-create_component_install_rules(${component} ${master_name} "")
+# create_component_install_rules(${component} ${master_name} "")
+
+# create install rules for the component
+create_component_install_rules(
+    COMPONENT ${component} 
+    MASTER_NAME ${master_name} 
+    REQUIRED_LIBRARIES Eigen3)

@@ -19,4 +19,7 @@ target_link_libraries(${component} PUBLIC
 )
 
 # create install rules for the component
-create_component_install_rules(${component} ${master_name} "core;vision;io")
+create_component_install_rules(
+    COMPONENT ${component} 
+    MASTER_NAME ${master_name} 
+    REQUIRED_COMPONENTS "core" "vision" "io")

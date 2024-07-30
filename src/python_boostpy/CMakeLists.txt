@@ -14,4 +14,12 @@ target_link_libraries(${component} INTERFACE
     ${master_name}::core Boost::boost Boost::python Python::Python
 )
 
-create_component_install_rules(${component} ${master_name} "core")
+# create_component_install_rules(${component} ${master_name} "core")
+
+# create install rules for the component
+create_component_install_rules(
+    COMPONENT ${component} 
+    MASTER_NAME ${master_name} 
+    REQUIRED_LIBRARIES PythonLibs Boost::python
+    REQUIRED_COMPONENTS "core"
+)

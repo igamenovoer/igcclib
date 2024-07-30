@@ -23,4 +23,12 @@ target_link_libraries(${component} PUBLIC
 )
 
 # create install rules for the component
-create_component_install_rules(${component} ${master_name} "core;extern")
+# create_component_install_rules(${component} ${master_name} "core;extern")
+
+# create install rules for the component
+create_component_install_rules(
+    COMPONENT ${component} 
+    MASTER_NAME ${master_name} 
+    REQUIRED_LIBRARIES OpenCV Eigen3
+    REQUIRED_COMPONENTS "core" "extern"
+)

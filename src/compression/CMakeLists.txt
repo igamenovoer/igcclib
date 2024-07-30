@@ -13,4 +13,7 @@ create_component_library(${component} ${master_name} ${src_files})
 # target_link_libraries(${component} PUBLIC Eigen3::Eigen CGAL::CGAL ${master_name}::core)
 
 # create install rules for the component
-create_component_install_rules(${component} ${master_name} "core")
+create_component_install_rules(
+    COMPONENT ${component} 
+    MASTER_NAME ${master_name} 
+    REQUIRED_COMPONENTS "core")

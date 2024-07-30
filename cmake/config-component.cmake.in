@@ -1,15 +1,32 @@
-# required input: DependencyList, ComponentName
+# for use with configure_package_config_file()
+# see https://cmake.org/cmake/help/latest/module/CMakePackageConfigHelpers.html
+# also see https://stackoverflow.com/questions/75845254/how-does-cmake-s-configure-package-config-file-work
+# required input: 
+# ConfigDependsLibrary : list of libraries that this component depends on, for use with find_dependency()
+# ConfigComponentName : name of the component
+# ConfigMasterName : name of the master package
+
+@PACKAGE_INIT@
 
 # add dependecy check
 include(CMakeFindDependencyMacro)
 
 # foreach library in DependencyList, find_dependency(library)
-# e.g., "OpenCV;Eigen3;spdlog"
-foreach(dep @DependencyList@)
-  find_dependency(${dep})
+foreach(dep @ConfigDependsLibrary@)
+  # if dep contains namespace, split it into package and component
+  string(FIND ${dep} "::" pos)
+  if(${pos} GREATER -1)
+    string(SUBSTRING ${dep} 0 ${pos} package)
+    string(SUBSTRING ${dep} ${pos} -1 component)
+    find_dependency(${package} COMPONENTS ${component})
+  else()
+    find_dependency(${dep})
+  endif()
 endforeach()
 
 # given ComponentName, include the target file
-set(component @ComponentName@)
-set(component_cmake_file @ComponentName@-$<CONFIG>-targets.cmake)
-include(${CMAKE_CURRENT_LIST_DIR}/cmake/${component_cmake_file})
+set(component_cmake_file @ConfigComponentName@-targets.cmake)
+include(${CMAKE_CURRENT_LIST_DIR}/${component_cmake_file})
+
+# make sure that the required components are present
+check_required_components(@ConfigMasterName@::@ConfigComponentName@)
