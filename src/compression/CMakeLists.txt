@@ -1,4 +1,4 @@
-include(${CMAKE_SOURCE_DIR}/cmake/component-helpers.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/component-helpers.cmake)
 set(component compression)
 
 # core library is header only

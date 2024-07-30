@@ -8,7 +8,7 @@ find_package(spdlog REQUIRED)
 find_package(Eigen3 REQUIRED)
 
 # Add the test executable
-# include_directories(${CMAKE_SOURCE_DIR}/include)
+# include_directories(${PROJECT_SOURCE_DIR}/include)
 
 add_executable(test-core test-core.cpp)
 target_link_libraries(test-core core spdlog::spdlog Eigen3::Eigen igcclib::core)

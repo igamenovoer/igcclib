@@ -9,7 +9,7 @@
 # for multi configuration build system:
 # https://discourse.cmake.org/t/install-with-export-and-multiple-configurations/1292
 
-include(${CMAKE_SOURCE_DIR}/cmake/component-helpers.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/component-helpers.cmake)
 set(component core)
 
 create_component_interface(${component} ${master_name})

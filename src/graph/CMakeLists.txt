@@ -1,4 +1,4 @@
-include(${CMAKE_SOURCE_DIR}/cmake/component-helpers.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/component-helpers.cmake)
 set(component graph)
 
 create_component_interface(${component} ${master_name})

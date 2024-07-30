@@ -19,10 +19,10 @@ macro(create_component_library component master_name src_files)
     add_library(${master_name}::${component} ALIAS ${component})
 
     # include directories
-    # during build: CMAKE_SOURCE_DIR/include
+    # during build: PROJECT_SOURCE_DIR/include
     # after install: include
     target_include_directories(${component} PUBLIC
-        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+        $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>
     )
 
@@ -37,10 +37,10 @@ macro(create_component_interface component master_name)
     add_library(${master_name}::${component} ALIAS ${component})
 
     # include directories
-    # during build: CMAKE_SOURCE_DIR/include
+    # during build: PROJECT_SOURCE_DIR/include
     # after install: include
     target_include_directories(${component} INTERFACE
-        $<BUILD_INTERFACE:${CMAKE_SOURCE_DIR}/include>
+        $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
         $<INSTALL_INTERFACE:include>
     )
 endmacro()
@@ -93,7 +93,7 @@ macro(create_component_install_rules)
     set(ConfigMasterName ${master_name})
     set(ConfigDependsLibrary ${depends_on_libraries})
     configure_package_config_file(
-        ${CMAKE_SOURCE_DIR}/cmake/config-component.cmake.in
+        ${PROJECT_SOURCE_DIR}/cmake/config-component.cmake.in
         ${CMAKE_CURRENT_BINARY_DIR}/${component}-config.cmake
         INSTALL_DESTINATION ${component_cmake_output_dir}
     )
@@ -119,7 +119,7 @@ macro(create_component_install_rules)
     )
 
     # copy include files
-    set(include_base_dir ${CMAKE_SOURCE_DIR}/include/${master_name})
+    set(include_base_dir ${PROJECT_SOURCE_DIR}/include/${master_name})
     set(include_dirs ${include_base_dir}/${component})
 
     # also add depends_on_components include directories

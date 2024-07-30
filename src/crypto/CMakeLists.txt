@@ -1,8 +1,8 @@
 # the style follows this guide:
 # https://stackoverflow.com/questions/54702582/how-to-configure-project-with-components-in-cmake
 
-# include(${CMAKE_SOURCE_DIR}/cmake/igcclib-utils.cmake)
-include(${CMAKE_SOURCE_DIR}/cmake/component-helpers.cmake)
+# include(${PROJECT_SOURCE_DIR}/cmake/igcclib-utils.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/component-helpers.cmake)
 set(component crypto)
 
 # core library is header only

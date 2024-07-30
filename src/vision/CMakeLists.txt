@@ -1,4 +1,4 @@
-include(${CMAKE_SOURCE_DIR}/cmake/component-helpers.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/component-helpers.cmake)
 include(FindPackageHandleStandardArgs)
 
 set(component vision)
