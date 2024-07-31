@@ -4,15 +4,16 @@ include(FindPackageHandleStandardArgs)
 
 set(component vision)
 
-set(src_files  
-    ${CMAKE_CURRENT_LIST_DIR}/CameraModel.cpp
+set(src_files ${CMAKE_CURRENT_LIST_DIR}/CameraModel.cpp 
     ${CMAKE_CURRENT_LIST_DIR}/igcclib_image_processing.cpp
     ${CMAKE_CURRENT_LIST_DIR}/igcclib_opencv.cpp
     ${CMAKE_CURRENT_LIST_DIR}/VideoReader.cpp
 )
 set_source_files_properties(${src_files} PROPERTIES LANGUAGE CXX)
 
-create_component_library(${component} ${master_name} ${src_files})
+create_component_library(COMPONENT ${component} 
+    MASTER_NAME ${master_name} 
+    SRC_FILES ${src_files})
 
 # setup component linking
 find_package(Eigen3 REQUIRED)

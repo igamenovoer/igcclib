@@ -14,7 +14,9 @@ set(src_files
 )
 set_source_files_properties(${src_files} PROPERTIES LANGUAGE CXX)
 
-create_component_library(${component} ${master_name} ${src_files})
+create_component_library(COMPONENT ${component} 
+    MASTER_NAME ${master_name} 
+    SRC_FILES ${src_files})
 
 # setup component linking
 find_package(Eigen3 REQUIRED)

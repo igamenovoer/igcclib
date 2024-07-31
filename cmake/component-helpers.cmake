@@ -12,9 +12,20 @@ endfunction()
 # create library target for component, named ${component}
 # setup its include directories as well, but linking is not done here
 # you need to link the component manually
-macro(create_component_library component master_name src_files)
+# function(create_component_library component master_name src_files)
+# use named parameters because src_files is a list
+function(create_component_library)
+    set(oneValueArgs COMPONENT MASTER_NAME)
+    set(multiValueArgs SRC_FILES)
+    cmake_parse_arguments(CREATE_COMPONENT_LIBRARY "" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
+
+    set(component ${CREATE_COMPONENT_LIBRARY_COMPONENT})
+    set(master_name ${CREATE_COMPONENT_LIBRARY_MASTER_NAME})
+    set(src_files ${CREATE_COMPONENT_LIBRARY_SRC_FILES})
 
     add_library(${component} ${src_files})
+    # message(STATUS "Creating component ${component} with sources ${src_files}")
+    
     add_library(${master_name}::${component} ALIAS ${component})
 
     # include directories
@@ -25,7 +36,7 @@ macro(create_component_library component master_name src_files)
         # $<INSTALL_INTERFACE:include> # leave it for install(EXPORT)
     )
 
-endmacro()
+endfunction()
 
 # create interface target for component, named ${component}, this is used for header-only libraries
 # setup its include directories as well, but linking is not done here

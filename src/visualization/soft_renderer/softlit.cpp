@@ -1,19 +1,17 @@
-#pragma once
-
 //put this file in one and only one .cpp to get SoftLit compile
 #include <igcclib/igcclib_master.hpp>
 
-#include <igcclib/soft_renderer/softlit/Master.h>
+#include <igcclib/visualization/soft_renderer/softlit/Master.h>
 
 //must include these first, otherwise they will conflict with Shaders.h
-#include <igcclib/soft_renderer/softlit/Texture.h>
+#include <igcclib/visualization/soft_renderer/softlit/Texture.h>
 
-#include <igcclib/soft_renderer/softlit/Display.h>
-#include <igcclib/soft_renderer/softlit/Primitive.h>
-#include <igcclib/soft_renderer/softlit/Rasterizer.h>
-#include <igcclib/soft_renderer/softlit/Shaders.h>
-#include <igcclib/soft_renderer/softlit/AnalysisShader.h>
-#include <igcclib/soft_renderer/softlit_helpers.h>
+#include <igcclib/visualization/soft_renderer/softlit/Display.h>
+#include <igcclib/visualization/soft_renderer/softlit/Primitive.h>
+#include <igcclib/visualization/soft_renderer/softlit/Rasterizer.h>
+#include <igcclib/visualization/soft_renderer/softlit/Shaders.h>
+#include <igcclib/visualization/soft_renderer/softlit/AnalysisShader.h>
+#include <igcclib/visualization/soft_renderer/igcclib_softlit_helpers.hpp>
 
 #include <igcclib/geometry/TriangularMesh.hpp>
 

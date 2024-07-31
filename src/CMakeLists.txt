@@ -1,7 +1,6 @@
 include(GNUInstallDirs)
 include(${PROJECT_SOURCE_DIR}/cmake/igcclib-dependency.cmake)
 
-option(BUILD_SHARED_LIBS "Build shared libraries" ON)
 option(WITH_ALL_COMPONENTS "Build all components" ON)
 option(WITH_GEOMETRY "Build geometry module" OFF)
 option(WITH_COMPRESSION "Build compression module" OFF)

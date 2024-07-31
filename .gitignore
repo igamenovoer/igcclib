@@ -35,3 +35,6 @@ build/
 build-*/
 .cache/
 install/
+cmake-fetch/
+.cmake-fetch/
+tmp/

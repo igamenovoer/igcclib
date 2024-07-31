@@ -4,7 +4,7 @@
 #include <igcclib/geometry/MeshSearcher.hpp>
 #include <igcclib/core/igcclib_eigen.hpp>
 #include <igcclib/geometry/igcclib_cgal_eigen.hpp>
-#include <CGAL/Barycentric_coordinates_2/Triangle_coordinates_2.h>
+#include <CGAL/Barycentric_coordinates_2/triangle_coordinates_2.h>
 
 namespace _NS_UTILITY
 {
@@ -67,7 +67,7 @@ namespace _NS_UTILITY
 		}
 
 		//compute barycentric coordinate
-		typedef CGAL::Barycentric_coordinates::Triangle_coordinates_2<KERNEL> BC_COMPUTE;
+		// typedef CGAL::Barycentric_coordinates::Triangle_coordinates_2<KERNEL> BC_COMPUTE;
 		std::vector<POINT_3> bcpts(ptslist.size());
 		for (int i = 0; i < ptslist.size(); i++)
 		{

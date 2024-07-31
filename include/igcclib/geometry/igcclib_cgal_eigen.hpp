@@ -1,6 +1,7 @@
 #pragma once
 //CGAL and Eigen interop
 
+#include <CGAL/Barycentric_coordinates_2/Mean_value_coordinates_2.h>
 #include <igcclib/core/igcclib_eigen_def.hpp>
 #include <igcclib/geometry/igcclib_cgal_def.hpp>
 
@@ -88,7 +89,7 @@ namespace _NS_UTILITY
 	template<typename T>
 	POLYFACELIST to_face_list(const MATRIX_t<T>& faces)
 	{
-		using T = POLYFACE::value_type;
+		// using T = POLYFACE::value_type;
 		POLYFACELIST facelist;
 		for (int i = 0; i < faces.rows(); i++)
 		{
@@ -246,15 +247,16 @@ namespace _NS_UTILITY
 		const MATRIX_t<FLOAT_T>& polygon_pts, const MATRIX_t<FLOAT_T>& query_pts,
 		MATRIX_t<FLOAT_T>& output)
 	{
+		// TODO: test needed
 		assert_throw(polygon_pts.cols() == 2, "only accepts 2d points");
 		assert_throw(query_pts.cols() == 2, "only accepts 2d points");
 
 		//construct mean value coordinate object
-		using MEAN_VALUE = CGAL::Barycentric_coordinates::Mean_value_2<KERNEL>;
-		using MEAN_VALUE_COORD = CGAL::Barycentric_coordinates::Generalized_barycentric_coordinates_2<MEAN_VALUE, KERNEL>;
+		// using MEAN_VALUE = CGAL::Barycentric_coordinates::Mean_value_2<KERNEL>;
+		// using MEAN_VALUE_COORD = CGAL::Barycentric_coordinates::Generalized_barycentric_coordinates_2<MEAN_VALUE, KERNEL>;
 
 		auto _polygon_pts = to_point_list_2(polygon_pts);
-		MEAN_VALUE_COORD mvc_computer(_polygon_pts.begin(), _polygon_pts.end());
+		// MEAN_VALUE_COORD mvc_computer(_polygon_pts.begin(), _polygon_pts.end());
 		output.resize(query_pts.rows(), polygon_pts.rows());
 
 		std::vector<FLOAT_T> _out;
@@ -264,6 +266,7 @@ namespace _NS_UTILITY
 		{
 			_out.clear();
 			POINT_2 p(query_pts(i, 0), query_pts(i, 1));
+			CGAL::Barycentric_coordinates::mean_value_coordinates_2(polygon_pts, p, std::back_inserter(_out));
 			mvc_computer(p, std::back_inserter(_out));
 			for (int k = 0; k < _out.size(); k++)
 				output(i, k) = _out[k];

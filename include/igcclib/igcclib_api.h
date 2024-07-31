@@ -2,7 +2,7 @@
 
 // Define IGCCLIB_API for any platform
 #if defined _WIN32 || defined __CYGWIN__
-  #ifdef WIN_EXPORT
+  #ifdef IGCCLIB_EXPORTING
     // Exporting...
     #ifdef __GNUC__
       #define IGCCLIB_API __attribute__ ((dllexport))

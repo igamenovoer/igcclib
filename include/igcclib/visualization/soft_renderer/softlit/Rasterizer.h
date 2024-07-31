@@ -1,5 +1,5 @@
 #pragma once
-
+#include <map>
 #include <igcclib/visualization/soft_renderer/softlit/Primitive.h>
 
 namespace softlit

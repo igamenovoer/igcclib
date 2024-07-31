@@ -4,6 +4,7 @@
 #include <algorithm>
 #include <iostream>
 #include <random>
+#include <set>
 
 #include <igcclib/igcclib_master.hpp>
 #include <igcclib/extern/naturalorder.h>

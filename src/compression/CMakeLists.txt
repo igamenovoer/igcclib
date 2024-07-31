@@ -8,7 +8,9 @@ set(src_files
 )
 set_source_files_properties(${src_files} PROPERTIES LANGUAGE CXX)
 
-create_component_library(${component} ${master_name} ${src_files})
+create_component_library(COMPONENT ${component} 
+    MASTER_NAME ${master_name} 
+    SRC_FILES ${src_files})
 
 # setup component linking
 # target_link_libraries(${component} PUBLIC Eigen3::Eigen CGAL::CGAL ${master_name}::core)

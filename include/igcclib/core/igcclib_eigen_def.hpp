@@ -304,7 +304,7 @@ namespace _NS_UTILITY
 			{
 				for (int k = 0; k < matlist.size(); k++)
 				{
-					output[w++] = (D)(float_type((*matlist[k])(i) - in_min) / in_len * out_len + out_min);
+					output[w++] = (D)((float_type((*matlist[k])(i)) - in_min) / in_len * out_len + out_min);
 				}
 			}
 		}
@@ -330,7 +330,7 @@ namespace _NS_UTILITY
 				for (size_t k = 0; k < n_channel; k++)
 				{
 					//read a pixel and normalize it
-					D value = (D)(float_type(input[i * n_channel + k] - in_min) / in_len * out_len + out_min);
+					T value = (T)((float_type(input[i * n_channel + k]) - in_min) / in_len * out_len + out_min);
 
 					//write it
 					(*matlist[k])(i) = value;
