@@ -41,8 +41,10 @@ find_package(Eigen3 REQUIRED)
 find_package(OpenCV REQUIRED)
 
 set(IGCCLIB_DATA_DIR "${PROJECT_SOURCE_DIR}/../data")
+set(IGCCLIB_OUTPUT_DIR "${PROJECT_SOURCE_DIR}/../tmp")
 
 add_definitions(-DIGCCLIB_DATA_DIR="${IGCCLIB_DATA_DIR}")
+add_definitions(-DIGCCLIB_OUTPUT_DIR="${IGCCLIB_OUTPUT_DIR}")
 
 add_executable(utest-core utest-core.cpp)
 target_link_libraries(utest-core PRIVATE 
