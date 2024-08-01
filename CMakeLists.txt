@@ -26,9 +26,19 @@ if(BUILD_SHARED_LIBS)
     add_definitions(-DIGCCLIB_EXPORTING)
 endif()
 
+# main library
 add_subdirectory(src)
 
 set(IGCCLIB_TEST_DATA_DIR "${CMAKE_CURRENT_SOURCE_DIR}/data")
 set(IGCCLIB_TEST_OUTPUT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/tmp")
-add_subdirectory(tests)
-add_subdirectory(examples)
+
+option(WITH_TESTS "Build tests" OFF)
+option(WITH_EXAMPLES "Build examples" OFF)
+
+if(WITH_TESTS)
+    add_subdirectory(tests)
+endif()
+
+if(WITH_EXAMPLES)
+    add_subdirectory(examples)
+endif()
