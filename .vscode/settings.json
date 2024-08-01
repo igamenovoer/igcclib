@@ -4,8 +4,16 @@
         "--compile-commands-dir=${workspaceFolder}/build"
     ],
     "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+    // "cmake.configureSettings": {
+    //     "CMAKE_INSTALL_PREFIX": "${workspaceFolder}/install",
+    //     "BUILD_SHARED_LIBS": "ON"
+    // },
+
+    "cmake.sourceDirectory": "${workspaceFolder}/tests",
+    "cmake.buildDirectory": "${workspaceFolder}/build-tests",
     "cmake.configureSettings": {
-        "CMAKE_INSTALL_PREFIX": "${workspaceFolder}/install",
-        "BUILD_SHARED_LIBS": "ON"
-    }
+        "CMAKE_PREFIX_PATH": "${workspaceFolder}/install/lib/cmake",
+        "IGCCLIB_TEST_DATA_DIR" : "${workspaceFolder}/data",
+        "IGCCLIB_TEST_OUTPUT_DIR" : "${workspaceFolder}/tmp",
+    },
 }

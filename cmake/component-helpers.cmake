@@ -4,9 +4,14 @@ function(get_component_export_target_filename component output_var)
     set(${output_var} ${component}-targets.cmake PARENT_SCOPE)
 endfunction()
 
+function(get_library_cmake_output_dir output_var)
+    set(${output_var} "lib/cmake" PARENT_SCOPE)
+endfunction()
+
 # get .cmake file output dir for component, relative to CMAKE_BINARY_DIR
 function(get_component_cmake_output_dir component output_var)
-    set(${output_var} "cmake/component" PARENT_SCOPE)
+    get_library_cmake_output_dir(OUTPUT_DIR)
+    set(${output_var} "${OUTPUT_DIR}/component" PARENT_SCOPE)
 endfunction()
 
 # create library target for component, named ${component}

@@ -27,4 +27,7 @@ if(BUILD_SHARED_LIBS)
 endif()
 
 add_subdirectory(src)
-add_subdirectory(test)
+
+set(IGCCLIB_TEST_DATA_DIR "${CMAKE_CURRENT_SOURCE_DIR}/data")
+set(IGCCLIB_TEST_OUTPUT_DIR "${CMAKE_CURRENT_SOURCE_DIR}/tmp")
+add_subdirectory(tests)

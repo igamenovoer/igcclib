@@ -2,12 +2,22 @@ cmake_minimum_required(VERSION 3.20)
 project(igcclib-test)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+# check if IGCCLIB_TEST_DATA_DIR is defined and non empty, otherwise raise an error
+if(NOT DEFINED IGCCLIB_TEST_DATA_DIR OR "${IGCCLIB_TEST_DATA_DIR}" STREQUAL "")
+  message(FATAL_ERROR "IGCCLIB_TEST_DATA_DIR is not defined or empty")
+endif()
+
+# check if IGCCLIB_TEST_OUTPUT_DIR is defined and non empty, otherwise raise an error
+if(NOT DEFINED IGCCLIB_TEST_OUTPUT_DIR OR "${IGCCLIB_TEST_OUTPUT_DIR}" STREQUAL "")
+  message(FATAL_ERROR "IGCCLIB_TEST_OUTPUT_DIR is not defined or empty")
+endif()
+
 # is this the top level project? using PROJECT_IS_TOP_LEVEL
 # if not, find_package(igcclib) should be called before
 if(PROJECT_IS_TOP_LEVEL)
   message(STATUS "Test project is building as a standalone project")
   message(STATUS "We need to find igcclib")
-  find_package(igcclib COMPONENTS core vision io graph geometry REQUIRED)
+  find_package(igcclib COMPONENTS core vision io graph geometry extern REQUIRED)
 endif()
 
 
@@ -39,12 +49,10 @@ message(STATUS "Catch2 source dir: ${catch2_SOURCE_DIR}")
 find_package(spdlog REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(OpenCV REQUIRED)
+find_package(nanoflann REQUIRED)
 
-set(IGCCLIB_DATA_DIR "${PROJECT_SOURCE_DIR}/../data")
-set(IGCCLIB_OUTPUT_DIR "${PROJECT_SOURCE_DIR}/../tmp")
-
-add_definitions(-DIGCCLIB_DATA_DIR="${IGCCLIB_DATA_DIR}")
-add_definitions(-DIGCCLIB_OUTPUT_DIR="${IGCCLIB_OUTPUT_DIR}")
+add_definitions(-DIGCCLIB_TEST_DATA_DIR="${IGCCLIB_TEST_DATA_DIR}")
+add_definitions(-DIGCCLIB_TEST_OUTPUT_DIR="${IGCCLIB_TEST_OUTPUT_DIR}")
 
 add_executable(utest-core utest-core.cpp)
 target_link_libraries(utest-core PRIVATE 

@@ -18,7 +18,8 @@ create_component_library(COMPONENT ${component}
 # setup component linking
 find_package(Eigen3 REQUIRED)
 find_package(OpenCV REQUIRED)
-set(dep_libs Eigen3::Eigen ${OpenCV_LIBS})
+find_package(nanoflann REQUIRED)
+set(dep_libs Eigen3::Eigen ${OpenCV_LIBS} nanoflann::nanoflann)
 
 target_link_libraries(${component} PUBLIC 
     ${master_name}::core ${master_name}::extern ${dep_libs}
@@ -32,6 +33,6 @@ set(required_comps ${${component}_REQUIRED_COMPONENTS})
 create_component_install_rules(
     COMPONENT ${component} 
     MASTER_NAME ${master_name} 
-    REQUIRED_LIBRARIES OpenCV Eigen3
+    REQUIRED_LIBRARIES OpenCV Eigen3 nanoflann
     REQUIRED_COMPONENTS ${required_comps}
 )

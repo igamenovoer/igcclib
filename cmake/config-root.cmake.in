@@ -15,32 +15,15 @@ include(${PACKAGE_PREFIX_DIR}/cmake/component-helpers.cmake)
 # this file will generate the igcclib-config.cmake in CMAKE_INSTALL_PREFIX/lib/cmake
 # to process find_package(igcclib COMPONENTS xxx, yyy, ...) calls
 # the xxx component can be found at ./igcclib/xxx-config.cmake
-set(masetr_name @ConfigMasterName@)
+set(master_name @ConfigMasterName@)
 
 # asking to find components?
-set(comps_to_load "core")
-if(${master_name}_FIND_COMPONENTS)
-    set(comps ${${master_name}_FIND_COMPONENTS})
-
-    # add dependent components
-    foreach(comp ${comps})
-        if(${comp}_REQUIRED_COMPONENTS)
-            list(APPEND comps_to_load ${${comp}_REQUIRED_COMPONENTS})
-        endif()
-    endforeach()
-
-    # remove duplicates
-    list(REMOVE_DUPLICATES comps_to_load)
-endif()
+set(comps_asked ${${master_name}_FIND_COMPONENTS})
+get_igcclib_component_dependencies(COMPONENTS ${comps_asked} OUTPUT_VAR comps_to_load)
 
 # load all components
 foreach(comp ${comps_to_load})
     get_component_cmake_output_dir(${comp} comp_output_dir)
     get_component_export_target_filename(${comp} comp_export_target_filename)
     include(${PACKAGE_PREFIX_DIR}/${comp_output_dir}/${comp_export_target_filename})
-endforeach()
-
-# check if all components are found
-foreach(comp ${comps_to_load})
-    check_required_components(${masetr_name}::${comp})
 endforeach()

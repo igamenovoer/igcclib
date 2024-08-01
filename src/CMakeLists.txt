@@ -1,4 +1,5 @@
 include(GNUInstallDirs)
+include(${PROJECT_SOURCE_DIR}/cmake/component-helpers.cmake)
 include(${PROJECT_SOURCE_DIR}/cmake/igcclib-dependency.cmake)
 
 option(WITH_ALL_COMPONENTS "Build all components" ON)
@@ -12,6 +13,10 @@ option(WITH_GRAPH "Build graph module" OFF)
 option(WITH_MATH "Build math module" OFF)
 option(WITH_PYTHON_BOOSTPY "Build python boostpy module" OFF)
 option(WITH_PYTHON_PYBIND11 "Build python pybind11 module" OFF)
+
+# these components are always built
+set(WITH_CORE ON)
+set(WITH_EXTERN ON)
 
 # turn on all components if WITH_ALL_COMPONENTS is on
 if(WITH_ALL_COMPONENTS)
@@ -33,9 +38,13 @@ endif()
 foreach(component ${IGCCLIB_ALL_COMPONENTS})
     set(dependencies ${${component}_REQUIRED_COMPONENTS})
     foreach(dep ${dependencies})
-        if(NOT WITH_${dep})
-            message(FATAL_ERROR "Component ${component} depends on ${dep}, but WITH_${dep} is OFF")
+        # convert dep to upper case
+        string(TOUPPER ${dep} dep_upper)
+
+        if(NOT WITH_${dep_upper})
+            message(FATAL_ERROR "Component ${component} depends on ${dep}, but WITH_${dep_upper} is OFF")
         endif()
+        
     endforeach()
 endforeach()
 
@@ -86,10 +95,11 @@ endif()
 include(CMakePackageConfigHelpers)
 
 set(ConfigMasterName ${master_name})
+get_library_cmake_output_dir(OUTPUT_DIR_FOR_CONFIG)
 configure_package_config_file(
     ${PROJECT_SOURCE_DIR}/cmake/config-root.cmake.in
     ${CMAKE_CURRENT_BINARY_DIR}/cmake/${master_name}-config.cmake
-    INSTALL_DESTINATION "cmake"
+    INSTALL_DESTINATION ${OUTPUT_DIR_FOR_CONFIG}
 )
 
 # write version file
@@ -104,5 +114,12 @@ install(
     FILES
         ${CMAKE_CURRENT_BINARY_DIR}/cmake/${master_name}-config.cmake
         ${CMAKE_CURRENT_BINARY_DIR}/cmake/${master_name}-config-version.cmake
-    DESTINATION cmake
+    DESTINATION ${OUTPUT_DIR_FOR_CONFIG}
+)
+
+# copy project/cmake files to install/cmake dir
+install(
+    DIRECTORY ${PROJECT_SOURCE_DIR}/cmake
+    DESTINATION .
+    FILES_MATCHING PATTERN "*.cmake"
 )

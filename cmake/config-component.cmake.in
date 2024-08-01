@@ -27,6 +27,3 @@ endforeach()
 # given ComponentName, include the target file
 set(component_cmake_file @ConfigComponentName@-targets.cmake)
 include(${CMAKE_CURRENT_LIST_DIR}/${component_cmake_file})
-
-# make sure that the required components are present
-check_required_components(@ConfigMasterName@::@ConfigComponentName@)

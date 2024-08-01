@@ -6,20 +6,20 @@
 #include <igcclib/vision/igcclib_opencv.hpp>
 #include <igcclib/vision/igcclib_image_processing.hpp>
 
-// required definitions of data directory in IGCCLIB_DATA_DIR, otherwise raise compile error
-#ifndef IGCCLIB_DATA_DIR
-    static_assert(0, "IGCCLIB_DATA_DIR is not defined");
+// required definitions of data directory in IGCCLIB_TEST_DATA_DIR, otherwise raise compile error
+#ifndef IGCCLIB_TEST_DATA_DIR
+    static_assert(0, "IGCCLIB_TEST_DATA_DIR is not defined");
 #endif
 
-// required definitions of output directory in IGCCLIB_OUTPUT_DIR, otherwise raise compile error
-#ifndef IGCCLIB_OUTPUT_DIR
-    static_assert(0, "IGCCLIB_OUTPUT_DIR is not defined");
+// required definitions of output directory in IGCCLIB_TEST_OUTPUT_DIR, otherwise raise compile error
+#ifndef IGCCLIB_TEST_OUTPUT_DIR
+    static_assert(0, "IGCCLIB_TEST_OUTPUT_DIR is not defined");
 #endif
 
 namespace fs = std::filesystem;
 
-const std::string output_dir = fs::path(IGCCLIB_OUTPUT_DIR)/"vision";
-const std::string data_dir = IGCCLIB_DATA_DIR;
+const std::string output_dir = fs::path(IGCCLIB_TEST_OUTPUT_DIR)/"vision";
+const std::string data_dir = IGCCLIB_TEST_DATA_DIR;
 const std::string image_filename = "05673d9a-caba-4f8a-99ef-55763b124d31.png";
 
 // joint data_dir and image_filename
