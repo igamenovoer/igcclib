@@ -14,6 +14,10 @@ function(get_component_cmake_output_dir component output_var)
     set(${output_var} "${OUTPUT_DIR}/component" PARENT_SCOPE)
 endfunction()
 
+function(get_component_config_filename component output_var)
+    set(${output_var} "${component}-config.cmake" PARENT_SCOPE)
+endfunction()
+
 # create library target for component, named ${component}
 # setup its include directories as well, but linking is not done here
 # you need to link the component manually
@@ -66,9 +70,10 @@ endmacro()
 # MASTER_NAME: the name of the master project
 # REQUIRED_COMPONENTS: the components that this component depends on
 # REQUIRED_LIBRARIES: the libraries that this component depends on
+# COPY_INCLUDES: ON/OFF, copy include files to install directory, default is OFF, leave this part to parent
 macro(create_component_install_rules)
 
-    set(oneValueArgs COMPONENT MASTER_NAME)
+    set(oneValueArgs COMPONENT MASTER_NAME COPY_INCLUDES)
     set(multiValueArgs REQUIRED_COMPONENTS REQUIRED_LIBRARIES)
     cmake_parse_arguments(CREATE_COMPONENT_INSTALL_RULES "" "${oneValueArgs}" "${multiValueArgs}" ${ARGN})
 
@@ -77,6 +82,7 @@ macro(create_component_install_rules)
     set(master_name ${CREATE_COMPONENT_INSTALL_RULES_MASTER_NAME})
     set(depends_on_components ${CREATE_COMPONENT_INSTALL_RULES_REQUIRED_COMPONENTS})
     set(depends_on_libraries ${CREATE_COMPONENT_INSTALL_RULES_REQUIRED_LIBRARIES})
+    set(copy_includes ${CREATE_COMPONENT_INSTALL_RULES_COPY_INCLUDES})
 
     # component .cmake output dir relative to CMAKE_BINARY_DIR
     get_component_cmake_output_dir(${component} component_cmake_output_dir)
@@ -105,13 +111,20 @@ macro(create_component_install_rules)
     set(ConfigComponentName ${component})
     set(ConfigMasterName ${master_name})
     set(ConfigDependsLibrary ${depends_on_libraries})
+    
+    get_component_config_filename(${component} component_config_filename)
     configure_package_config_file(
         ${PROJECT_SOURCE_DIR}/cmake/config-component.cmake.in
-        ${CMAKE_CURRENT_BINARY_DIR}/${component}-config.cmake
+        ${CMAKE_CURRENT_BINARY_DIR}/${component_config_filename}
         INSTALL_DESTINATION ${component_cmake_output_dir}
     )
+    # configure_file(
+    #     ${PROJECT_SOURCE_DIR}/cmake/config-component.cmake.in
+    #     ${CMAKE_CURRENT_BINARY_DIR}/${component_config_filename}
+    #     @ONLY
+    # )
     install(FILES
-        ${CMAKE_CURRENT_BINARY_DIR}/${component}-config.cmake
+        ${CMAKE_CURRENT_BINARY_DIR}/${component_config_filename}
         DESTINATION ${component_cmake_output_dir}
         COMPONENT ${component}
     )
@@ -131,19 +144,21 @@ macro(create_component_install_rules)
         COMPONENT ${component}
     )
 
-    # copy include files
-    set(include_base_dir ${PROJECT_SOURCE_DIR}/include/${master_name})
-    set(include_dirs ${include_base_dir}/${component})
+    if(copy_includes)
+        # copy include files
+        set(include_base_dir ${PROJECT_SOURCE_DIR}/include/${master_name})
+        set(include_dirs ${include_base_dir}/${component})
 
-    # also add depends_on_components include directories
-    foreach(dep_component ${depends_on_components})
-        set(dep_include_dirs ${include_base_dir}/${dep_component})
-        list(APPEND include_dirs ${dep_include_dirs})
-    endforeach()
+        # also add depends_on_components include directories
+        foreach(dep_component ${depends_on_components})
+            set(dep_include_dirs ${include_base_dir}/${dep_component})
+            list(APPEND include_dirs ${dep_include_dirs})
+        endforeach()
 
-    install(DIRECTORY ${include_dirs}
-        DESTINATION include/${master_name}
-        COMPONENT ${component}
-    )
+        install(DIRECTORY ${include_dirs}
+            DESTINATION include/${master_name}
+            COMPONENT ${component}
+        )
+    endif()
 
 endmacro()

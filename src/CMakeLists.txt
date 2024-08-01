@@ -123,3 +123,9 @@ install(
     DESTINATION .
     FILES_MATCHING PATTERN "*.cmake"
 )
+
+# copy project/include files to install/include dir
+install(
+    DIRECTORY ${PROJECT_SOURCE_DIR}/include/${master_name}
+    DESTINATION include
+)

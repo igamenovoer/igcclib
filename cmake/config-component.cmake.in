@@ -17,7 +17,10 @@ foreach(dep @ConfigDependsLibrary@)
   string(FIND ${dep} "::" pos)
   if(${pos} GREATER -1)
     string(SUBSTRING ${dep} 0 ${pos} package)
-    string(SUBSTRING ${dep} ${pos} -1 component)
+
+    math(EXPR pos_2 "${pos} + 2")
+    string(SUBSTRING ${dep} ${pos_2} -1 component)
+    
     find_dependency(${package} COMPONENTS ${component})
   else()
     find_dependency(${dep})
