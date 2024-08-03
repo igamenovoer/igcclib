@@ -2,7 +2,7 @@ include(GNUInstallDirs)
 include(${PROJECT_SOURCE_DIR}/cmake/component-helpers.cmake)
 include(${PROJECT_SOURCE_DIR}/cmake/igcclib-dependency.cmake)
 
-option(WITH_ALL_COMPONENTS "Build all components" ON)
+option(WITH_ALL_COMPONENTS "Build all components" OFF)
 option(WITH_GEOMETRY "Build geometry module" OFF)
 option(WITH_COMPRESSION "Build compression module" OFF)
 option(WITH_CRYPTO "Build crypto module" OFF)
@@ -36,6 +36,14 @@ endif()
 # for each component in IGCCLIB_ALL_COMPONENTS, check its dependencies
 # if it depends on a component xx, then WITH_XX must be ON
 foreach(component ${IGCCLIB_ALL_COMPONENTS})
+    string(TOUPPER ${component} component_upper)
+
+    # asked for this component?
+    if(NOT WITH_${component_upper})
+        continue()
+    endif()
+
+    # this component is asked for, check its dependencies
     set(dependencies ${${component}_REQUIRED_COMPONENTS})
     foreach(dep ${dependencies})
         # convert dep to upper case
@@ -44,7 +52,6 @@ foreach(component ${IGCCLIB_ALL_COMPONENTS})
         if(NOT WITH_${dep_upper})
             message(FATAL_ERROR "Component ${component} depends on ${dep}, but WITH_${dep_upper} is OFF")
         endif()
-        
     endforeach()
 endforeach()
 

@@ -22,11 +22,12 @@ set(master_name @ConfigMasterName@)
 # asking to find components?
 set(comps_asked ${${master_name}_FIND_COMPONENTS})
 get_igcclib_component_dependencies(COMPONENTS ${comps_asked} OUTPUT_VAR comps_to_load)
-
+message(STATUS "${master_name} components to load: ${comps_to_load}")
 # load all components
 # BUGFIX: PACKAGE_PREFIX_DIR gets changed by include, don't know why
 set(pkg_dir ${PACKAGE_PREFIX_DIR})
 foreach(comp ${comps_to_load})
+    message(STATUS "Loading ${master_name}::${comp}")
     get_component_cmake_output_dir(${comp} comp_output_dir)
     get_component_config_filename(${comp} comp_config_filename)
     
