@@ -17,8 +17,8 @@ endif()
 if(PROJECT_IS_TOP_LEVEL)
   message(STATUS "Test project is building as a standalone project")
   message(STATUS "We need to find igcclib")
-  # find_package(igcclib COMPONENTS core vision io graph geometry extern REQUIRED)
-  find_package(igcclib COMPONENTS vision io REQUIRED)
+  find_package(igcclib COMPONENTS core vision io graph geometry extern REQUIRED)
+  # find_package(igcclib COMPONENTS vision io REQUIRED)
 endif()
 
 
