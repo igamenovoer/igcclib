@@ -10,11 +10,10 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_DEBUG_POSTFIX d)
 set(IGCCLIB_OUTPUT_PREFIX "${master_name}-")
 
+list(APPEND CMAKE_MODULE_PATH "${PROJECT_SOURCE_DIR}/cmake")
+
 # for catching fetch content
 set(IGCCLIB_FETCHCONTENT_BASE_DIR "${CMAKE_CURRENT_LIST_DIR}/.cmake-fetch")
-
-# add ./cmake to module path
-list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 
 # if BUILD_SHARED_LIBS is not defined, add an option to define it
 # otherwise, use the value of BUILD_SHARED_LIBS

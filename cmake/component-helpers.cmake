@@ -5,7 +5,7 @@ function(get_component_export_target_filename component output_var)
 endfunction()
 
 function(get_library_cmake_output_dir output_var)
-    set(${output_var} "lib/cmake" PARENT_SCOPE)
+    set(${output_var} "lib/cmake/igcclib" PARENT_SCOPE)
 endfunction()
 
 # get .cmake file output dir for component, relative to CMAKE_BINARY_DIR
@@ -45,6 +45,9 @@ function(create_component_library)
         # $<INSTALL_INTERFACE:include> # leave it for install(EXPORT)
     )
 
+    # prepend master_name to target output
+    set_target_properties(${component} PROPERTIES OUTPUT_NAME ${master_name}-${component})
+
 endfunction()
 
 # create interface target for component, named ${component}, this is used for header-only libraries
@@ -62,6 +65,9 @@ macro(create_component_interface component master_name)
         $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/include>
         # $<INSTALL_INTERFACE:include> # leave it for install(EXPORT)
     )
+
+    # prepend master_name to target output
+    set_target_properties(${component} PROPERTIES OUTPUT_NAME ${master_name}-${component})
 endmacro()
 
 

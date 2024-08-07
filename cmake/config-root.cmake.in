@@ -8,16 +8,17 @@
 
 # add dependecy check
 cmake_minimum_required(VERSION 3.20)
-include(CMakeFindDependencyMacro)
-# set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PACKAGE_PREFIX_DIR}/cmake")
-list(APPEND CMAKE_MODULE_PATH "${PACKAGE_PREFIX_DIR}/cmake")
-include(${PACKAGE_PREFIX_DIR}/cmake/igcclib-dependency.cmake)
-include(${PACKAGE_PREFIX_DIR}/cmake/component-helpers.cmake)
 
 # this file will generate the igcclib-config.cmake in CMAKE_INSTALL_PREFIX/lib/cmake
 # to process find_package(igcclib COMPONENTS xxx, yyy, ...) calls
 # the xxx component can be found at ./igcclib/xxx-config.cmake
 set(master_name @ConfigMasterName@)
+
+include(CMakeFindDependencyMacro)
+# set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PACKAGE_PREFIX_DIR}/cmake")
+list(APPEND CMAKE_MODULE_PATH "${PACKAGE_PREFIX_DIR}/cmake/${master_name}")
+include(${PACKAGE_PREFIX_DIR}/cmake/${master_name}/igcclib-dependency.cmake)
+include(${PACKAGE_PREFIX_DIR}/cmake/${master_name}/component-helpers.cmake)
 
 # asking to find components?
 set(comps_asked ${${master_name}_FIND_COMPONENTS})

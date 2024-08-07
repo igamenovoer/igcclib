@@ -126,8 +126,8 @@ install(
 
 # copy project/cmake files to install/cmake dir
 install(
-    DIRECTORY ${PROJECT_SOURCE_DIR}/cmake
-    DESTINATION .
+    DIRECTORY ${PROJECT_SOURCE_DIR}/cmake/
+    DESTINATION cmake/${master_name}
     FILES_MATCHING PATTERN "*.cmake"
 )
 
