@@ -120,12 +120,12 @@ macro(create_component_install_rules)
     
     get_component_config_filename(${component} component_config_filename)
     configure_package_config_file(
-        ${PROJECT_SOURCE_DIR}/cmake/config-component.cmake.in
+        ${PROJECT_SOURCE_DIR}/cmake/igcclib-component-config.cmake.in
         ${CMAKE_CURRENT_BINARY_DIR}/${component_config_filename}
         INSTALL_DESTINATION ${component_cmake_output_dir}
     )
     # configure_file(
-    #     ${PROJECT_SOURCE_DIR}/cmake/config-component.cmake.in
+    #     ${PROJECT_SOURCE_DIR}/cmake/igcclib-component-config.cmake.in
     #     ${CMAKE_CURRENT_BINARY_DIR}/${component_config_filename}
     #     @ONLY
     # )

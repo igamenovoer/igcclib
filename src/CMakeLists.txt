@@ -1,5 +1,5 @@
 include(GNUInstallDirs)
-include(${PROJECT_SOURCE_DIR}/cmake/component-helpers.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/igcclib-component-helpers.cmake)
 include(${PROJECT_SOURCE_DIR}/cmake/igcclib-dependency.cmake)
 
 option(WITH_ALL_COMPONENTS "Build all components" OFF)
@@ -104,7 +104,7 @@ include(CMakePackageConfigHelpers)
 set(ConfigMasterName ${master_name})
 get_library_cmake_output_dir(OUTPUT_DIR_FOR_CONFIG)
 configure_package_config_file(
-    ${PROJECT_SOURCE_DIR}/cmake/config-root.cmake.in
+    ${PROJECT_SOURCE_DIR}/cmake/igcclib-config.cmake.in
     ${CMAKE_CURRENT_BINARY_DIR}/cmake/${master_name}-config.cmake
     INSTALL_DESTINATION ${OUTPUT_DIR_FOR_CONFIG}
 )

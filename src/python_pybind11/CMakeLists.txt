@@ -1,4 +1,4 @@
-include(${PROJECT_SOURCE_DIR}/cmake/component-helpers.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/igcclib-component-helpers.cmake)
 include(${PROJECT_SOURCE_DIR}/cmake/igcclib-dependency.cmake)
 set(component python_pybind11)
 

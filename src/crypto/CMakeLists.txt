@@ -2,7 +2,7 @@
 # https://stackoverflow.com/questions/54702582/how-to-configure-project-with-components-in-cmake
 
 # include(${PROJECT_SOURCE_DIR}/cmake/igcclib-utils.cmake)
-include(${PROJECT_SOURCE_DIR}/cmake/component-helpers.cmake)
+include(${PROJECT_SOURCE_DIR}/cmake/igcclib-component-helpers.cmake)
 include(${PROJECT_SOURCE_DIR}/cmake/igcclib-dependency.cmake)
 set(component crypto)
 

@@ -12,25 +12,27 @@ cmake_minimum_required(VERSION 3.20)
 # this file will generate the igcclib-config.cmake in CMAKE_INSTALL_PREFIX/lib/cmake
 # to process find_package(igcclib COMPONENTS xxx, yyy, ...) calls
 # the xxx component can be found at ./igcclib/xxx-config.cmake
-set(master_name @ConfigMasterName@)
-
 include(CMakeFindDependencyMacro)
-# set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${PACKAGE_PREFIX_DIR}/cmake")
-list(APPEND CMAKE_MODULE_PATH "${PACKAGE_PREFIX_DIR}/cmake/${master_name}")
-include(${PACKAGE_PREFIX_DIR}/cmake/${master_name}/igcclib-dependency.cmake)
-include(${PACKAGE_PREFIX_DIR}/cmake/${master_name}/component-helpers.cmake)
+
+# prepend @ConfigMasterName@ to every variable defined in this file
+# so that they do not conflict with other projects
+set(@ConfigMasterName@_package_dir ${PACKAGE_PREFIX_DIR})
+set(@ConfigMasterName@_project_name @ConfigMasterName@)
+
+list(APPEND CMAKE_MODULE_PATH "${@ConfigMasterName@_package_dir}/cmake/${@ConfigMasterName@_project_name}")
+include(igcclib-dependency)
+include(igcclib-component-helpers)
 
 # asking to find components?
-set(comps_asked ${${master_name}_FIND_COMPONENTS})
+set(comps_asked ${${@ConfigMasterName@_project_name}_FIND_COMPONENTS})
 get_igcclib_component_dependencies(COMPONENTS ${comps_asked} OUTPUT_VAR comps_to_load)
-message(STATUS "${master_name} components to load: ${comps_to_load}")
+message(STATUS "${@ConfigMasterName@_project_name} components to load: ${comps_to_load}")
+
 # load all components
-# BUGFIX: PACKAGE_PREFIX_DIR gets changed by include, don't know why
-set(pkg_dir ${PACKAGE_PREFIX_DIR})
 foreach(comp ${comps_to_load})
-    message(STATUS "Loading ${master_name}::${comp}")
+    message(STATUS "Loading ${@ConfigMasterName@_project_name}::${comp}")
     get_component_cmake_output_dir(${comp} comp_output_dir)
     get_component_config_filename(${comp} comp_config_filename)
     
-    include(${pkg_dir}/${comp_output_dir}/${comp_config_filename})
+    include(${@ConfigMasterName@_package_dir}/${comp_output_dir}/${comp_config_filename})
 endforeach()

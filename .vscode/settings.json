@@ -5,21 +5,22 @@
         "--header-insertion=never",
     ],
     "cmake.copyCompileCommands": "${workspaceFolder}/build/compile_commands.json",
-    // "cmake.buildDirectory": "${workspaceFolder}/build/${buildType}",
-    // "cmake.configureSettings": {
-    //     "CMAKE_INSTALL_PREFIX": "${workspaceFolder}/install",
-    //     "BUILD_SHARED_LIBS": "ON",
-    //     "WITH_ALL_COMPONENTS": "ON",
-    // },
     "cmake.preferredGenerators": ["Ninja"],
+
+    "cmake.buildDirectory": "${workspaceFolder}/build/${buildType}",
+    "cmake.configureSettings": {
+        "CMAKE_INSTALL_PREFIX": "${workspaceFolder}/install",
+        "BUILD_SHARED_LIBS": "ON",
+        "WITH_ALL_COMPONENTS": "ON",
+    },
 
     // "cmake.sourceDirectory": "${workspaceFolder}/tests",
     // "cmake.buildDirectory": "${workspaceFolder}/build-tests",
-    "cmake.sourceDirectory": "${workspaceFolder}/examples",
-    "cmake.buildDirectory": "${workspaceFolder}/build-examples",
-    "cmake.configureSettings": {
-        "CMAKE_PREFIX_PATH": "${workspaceFolder}/install/lib/cmake/igcclib",
-        "IGCCLIB_TEST_DATA_DIR" : "${workspaceFolder}/data",
-        "IGCCLIB_TEST_OUTPUT_DIR" : "${workspaceFolder}/tmp",
-    },
+    // "cmake.sourceDirectory": "${workspaceFolder}/examples",
+    // "cmake.buildDirectory": "${workspaceFolder}/build-examples",
+    // "cmake.configureSettings": {
+    //     "CMAKE_PREFIX_PATH": "${workspaceFolder}/install/lib/cmake/igcclib",
+    //     "IGCCLIB_TEST_DATA_DIR" : "${workspaceFolder}/data",
+    //     "IGCCLIB_TEST_OUTPUT_DIR" : "${workspaceFolder}/tmp",
+    // },
 }
