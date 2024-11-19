@@ -4,7 +4,6 @@
 #include <igcclib/vision/igcclib_image_processing.hpp>
 
 namespace _NS_UTILITY {
-
 	void rotate_image(cv::Mat& output, fMATRIX_3* out_transmat, 
 		const cv::Mat& input_image, double angle_rad, bool preserve_image_size /*= false*/)
 	{

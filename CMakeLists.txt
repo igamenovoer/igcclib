@@ -7,6 +7,8 @@ set(project_name ${CMAKE_PROJECT_NAME})
 set(master_name "igcclib")
 
 set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 set(CMAKE_DEBUG_POSTFIX d)
 set(IGCCLIB_OUTPUT_PREFIX "${master_name}-")
 

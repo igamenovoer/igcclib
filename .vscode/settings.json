@@ -13,6 +13,12 @@
         "BUILD_SHARED_LIBS": "ON",
         "WITH_ALL_COMPONENTS": "ON",
     },
+    "python.autoComplete.extraPaths": [
+        "/opt/ros/iron/lib/python3.10/site-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/opt/ros/iron/lib/python3.10/site-packages"
+    ],
 
     // "cmake.sourceDirectory": "${workspaceFolder}/tests",
     // "cmake.buildDirectory": "${workspaceFolder}/build-tests",

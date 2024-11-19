@@ -116,8 +116,8 @@ namespace _NS_UTILITY
 	public:
 		using dtype = T;
 
-		ImageRGBA_t<T>() {}
-		ImageRGBA_t<T>(size_t width, size_t height)
+		ImageRGBA_t() {}
+		ImageRGBA_t(size_t width, size_t height)
 		{
 			allocate(width, height);
 			clear(0, 0, 0, 0);
